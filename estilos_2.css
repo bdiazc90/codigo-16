@@ -33,7 +33,8 @@ p#p2 {
 
 /* -1 (tag + class + id) */
 p.par#p2 {
-    color: #dc00f4;
+    color: #d166dd;
+    text-transform: uppercase;
 }
 
 
