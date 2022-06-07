@@ -1,0 +1,17 @@
+h1 {
+    color: gray;
+    text-decoration: underline;
+}
+
+h2 {
+    color: blue;
+}
+
+#cabecera1 {
+    color: red;
+}
+
+.parrafos_rojos {
+    color: red !important;
+    font-weight: 600;
+}

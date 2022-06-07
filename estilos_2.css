@@ -1,0 +1,41 @@
+/* 5 (tag) */
+p { 
+    color: red; 
+    font-weight: bold; 
+    font-size: 20px; 
+    text-decoration: underline;
+}
+
+/* 4 (class) */
+.par {
+    color: blue;
+}
+
+/* 3 (tag + class) */
+p.par {
+    color: purple;
+}
+
+/* 2 (id) */
+#p2 {
+    color: green;
+}
+
+/* 1 (tag + id) */
+p#p2 {
+    color: orange;
+}
+
+/* 0 (class + id) */
+.par#p2 {
+    color: pink;
+}
+
+/* -1 (tag + class + id) */
+p.par#p2 {
+    color: #dc00f4;
+}
+
+
+
+
