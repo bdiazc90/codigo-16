@@ -32,7 +32,7 @@ p {
 .dotted {
     /* border: abrevia 3 propiedades en una */
     /* los 3 valores van en cualquier orden */
-    border: dotted blue 3px;
+    border: red dotted 3px;
 }
 
 .left_solid {

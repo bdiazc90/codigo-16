@@ -1,0 +1,60 @@
+body {
+    background-color: rgb(190, 190, 190);
+}
+
+#contenedor {
+    width: 300px;
+    height: 200px;
+    background: linear-gradient(to right, red 33%,white 33%, white 66%, red 66%);
+    margin: auto;
+}
+
+#contenedor:hover {
+    background: linear-gradient(to top, red 33%,white 33%, white 66%, red 66%);
+    box-shadow: none;
+}
+
+h1:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    border: 1px black solid;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+
+#circulo {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(red ,white , red );
+    margin: 60px auto;
+    border-radius: 100px;
+    /* filter: blur(10px) opacity(0.45); */
+}
+
+#circulo:hover {
+    background: none;
+    background-color: blue;
+    filter: none;
+}
+
+.sombra {
+    /* 1 parametro: eje X (default derecha) */
+    /* 2 parametro: eje Y (default abajo) */
+    /* 3 parametro: blur (difuminación) */
+    /* 4 parametro: spread (propagación) */
+    /* 5 parametro: color */
+    box-shadow: 20px 20px 10px 0px black;
+    
+}
+
+.sombra_texto {
+    /* 1 parametro: eje X (default derecha) */
+    /* 2 parametro: eje Y (default abajo) */
+    /* 3 parametro: blur (difuminación) */
+    /* 4 parametro: color */
+    text-shadow: 10px 10px 5px yellow;
+}
