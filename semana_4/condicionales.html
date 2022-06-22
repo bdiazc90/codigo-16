@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS - Condicionales</title>
+    <style type="text/css">
+        .red {
+            color: red;
+        }
+        .blue {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Martes 21 Junio</h1>
+    <h2>Condicionales + document.write( )</h2>
+    <hr>
+</body>
+<script type="text/javascript">
+    // Código de javascript:
+    document.write("<h3>Notas</h3>"); // Escribe dentro del html.
+
+    let nota = 10; // Nota de un alumno.
+    // nota = Number(prompt("Ingresa nota:"));
+
+    // isNaN: evalua si un valor No es numérico.
+    if (isNaN(nota)) {
+        alert("Solo numeros por favor");
+        nota = Number(prompt("Ingresa nota:"));
+    }
+
+    // IF: si en condicional.
+    // ELSE: sino.
+    if (nota < 11) {
+        document.write("<p class='red'>" + nota + "</p>"); // Concatenando.
+        document.write("<p class='red'>Desaprobado</p>");
+    } else {
+        document.write("<p class='blue'>" + nota + "</p>"); // Concatenando.
+        document.write("<p class='blue'>Aprobado</p>");
+    }
+    document.write("<hr>");
+
+    // Angulos:
+    document.write("<h3>Ángulos</h3>");
+    let angulo = 400;
+    document.write("<p>" + angulo + "</p>");
+
+    if (angulo == 0) {
+        document.write("<p>Nulo.</p>");
+    } else if (angulo < 90) {
+        document.write("<p>Águdo.</p>");
+    } else if (angulo == 90) {
+        document.write("<p>Recto.</p>");
+    } else if (angulo < 180) {
+        document.write("<p>Obtuso.</p>");
+    } else if (angulo == 180) {
+        document.write("<p>Llano.</p>");
+    } else if (angulo < 360) {
+        document.write("<p>Concavo.</p>");
+    } else if (angulo == 360) {
+        document.write("<p>Completo.</p>");
+    } else {
+        document.write("<p>INEXS.</p>");
+    }
+    document.write("<hr>");
+
+
+    // Temperatura:
+    let grados = 8;
+    let mensaje = "";
+    if (grados > 24) {
+        mensaje = "tropical";
+    } else if (grados >= 17) {
+        mensaje = "calido";
+    } else if (grados >= 11) {
+        mensaje = "templado";
+    } else if (grados <= 10) {
+        mensaje = "frio";
+    }
+
+    if (grados < 10) {
+        mensaje = "frio";
+    } else if (grados < 17) {
+        mensaje = "templado";
+    } else if (grados < 25) {
+        mensaje = "calido";
+    } else {
+        mensaje = "tropical";
+    }
+
+    document.write("<h1>Clima " + mensaje + "</h1>");
+    document.write("<hr>");
+    // Operadores Lógicos:
+    // document.body.style.backgroundColor = 'red';
+    let h1_texto = document.getElementsByTagName("h1")[0].innerText;
+    console.log(h1_texto);
+    // document.getElementsByTagName("h1")[0].innerText = 'Bruno Díaz';
+    // document.getElementsByTagName("body")[0].style.color = 'blue';
+
+    // Tipos de datos:
+    // Boolean (booleano True / False)
+    // && (AND)
+    // || (OR)
+    // !  (NOT)
+
+    // alert(true && true); // true
+    // alert(true && false); // false
+    // alert(false && true); // false
+    // alert(false && false); // false
+
+    // (AND) Si 1 de los valores es false, entonces false.
+    // (AND) Si todos son true, entonces true.
+    document.write("<h1>Cielo</h1>");
+    let hora = 10;
+    // hora < 18 // false
+    // hora > 6 // true
+    let cielo;
+    if (hora < 18 && hora > 6) {
+        cielo = 'dia';
+    } else {
+        cielo = 'noche';
+    }
+
+    document.write("<p>Son las " + hora + " horas y es de " + cielo + "</p>");
+    document.write("<hr>");
+
+    // alert(true || true); // true
+    // alert(true || false); // true
+    // alert(false || true); // true
+    // alert(false || false); // false
+
+    // (OR) Si 1 de los valores es true, entonces true.
+    // (OR) Si todos son false, entonces false.
+
+    let nombre = "Magaly";
+    let edad = 30; // > 30
+    let estado_civil = 'soltera'; // casada
+    let numero_hijos = 0; // > 0
+
+    if ("30" === "30") {
+        document.write("<p>Buen día sra. " + nombre + "</p>");
+    } else {
+        document.write("<p>Buen día señorita " + nombre + "</p>");
+    }
+
+    // = Asignar valor a una variable.
+    // == Comparar 2 valores. (se usa en una condición).
+    // === Comparar 2 valores adicionalmente por el tipo de dato.
+    // > Mayor que
+    // < Menor que
+    // >= Mayor O igual
+    // <= Menor O igual    
+</script>
+</html>
