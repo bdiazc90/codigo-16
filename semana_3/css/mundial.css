@@ -113,19 +113,16 @@ main {
   font-weight: bolder;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  font-size: var(--texto-grande);
 }
 
 .tr {
   background-color: var(--primer-color);
   border-bottom: 1px #666 dashed;
-  font-size: var(--texto-mediano);
 }
 /* even = par */
 /* odd = impar */
 .tr:nth-child(3n+1) {
   background-color: var(--segundo-color);
-  font-size: var(--texto-pequeno);
 }
 
 .tr:last-child {

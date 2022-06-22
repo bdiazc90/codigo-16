@@ -1,8 +1,7 @@
 :root {
     /* CASE SENSITIVE: sensible a mayus y minus. */
     /* variables de color: */
-    --primer-color: red;
-    --primer-Color: blue;
+    --primer-color: rgb(170, 170, 170);
     --segundo-color: #abc123;
     --tercer-color: rgba(100, 200, 123, 0.5);
 

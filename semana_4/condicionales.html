@@ -43,6 +43,14 @@
     }
     document.write("<hr>");
 
+    // = Asignar valor a una variable.
+    // == Comparar 2 valores. (se usa en una condición).
+    // === Comparar 2 valores adicionalmente por el tipo de dato.
+    // > Mayor que
+    // < Menor que
+    // >= Mayor o igual
+    // <= Menor o igual    
+
     // Angulos:
     document.write("<h3>Ángulos</h3>");
     let angulo = 400;
@@ -94,7 +102,7 @@
     document.write("<h1>Clima " + mensaje + "</h1>");
     document.write("<hr>");
     // Operadores Lógicos:
-    // document.body.style.backgroundColor = 'red';
+    document.body.style.backgroundColor = 'red';
     let h1_texto = document.getElementsByTagName("h1")[0].innerText;
     console.log(h1_texto);
     // document.getElementsByTagName("h1")[0].innerText = 'Bruno Díaz';
@@ -140,18 +148,12 @@
     let estado_civil = 'soltera'; // casada
     let numero_hijos = 0; // > 0
 
-    if ("30" === "30") {
+    if (edad > 30 || estado_civil == 'casada' || numero_hijos > 0) {
         document.write("<p>Buen día sra. " + nombre + "</p>");
     } else {
         document.write("<p>Buen día señorita " + nombre + "</p>");
     }
 
-    // = Asignar valor a una variable.
-    // == Comparar 2 valores. (se usa en una condición).
-    // === Comparar 2 valores adicionalmente por el tipo de dato.
-    // > Mayor que
-    // < Menor que
-    // >= Mayor O igual
-    // <= Menor O igual    
+    
 </script>
 </html>
