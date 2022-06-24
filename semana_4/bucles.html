@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucles</title>
+    <style>
+        #container {
+            width: 300px;
+            min-height: 100px;
+            background-color: #ddd;
+            margin: 20px auto;
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+<script>
+    // document.getElementByTagName() lo hicimos el martes, pero casi NO SE USA.
+    // document.getElementById() HOY. SI SE USA.
+    const div_container = document.getElementById('container');
+    div_container.innerHTML = "<h1>Bucles</h1>";
+
+    // += (numeros) suma al valor actual.
+    // += (string / cadena) concatena sobre el valor actual.
+    // += NO REEMPLAZA EL ACTUAL VALOR.
+    
+    
+    
+    let frutas = ['pera', 'manzana', 'limon', 'fresa', 'naranja'];
+
+    let iter = 0;
+    while (iter < frutas.length) {
+        div_container.innerHTML += "<p>" + frutas[iter] + "</p>";
+        if (frutas[iter] == 'limon') {
+            break;
+        }
+        iter += 1; // iter = iter + 1 || iter++
+    }
+
+    div_container.innerHTML += "<hr>";
+
+    // bucle: conjunto de ciclos.
+    // break: rompe el bucle completo.
+    // continue: rompe SOLO el ciclo actual, pero el bucle continua.
+
+
+
+</script>
+</html>
