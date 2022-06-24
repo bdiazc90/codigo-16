@@ -94,9 +94,10 @@
 
     const frase = "Amo programar"; // String
     for (let letra of frase) {
+        if (letra == " ") continue;
+        if (letra == "a" || letra == "A") continue;
         div_container.innerHTML += "<p> - " + letra + "</p>";
     }
-
     div_container.innerHTML += "<hr>";
 
     /*
