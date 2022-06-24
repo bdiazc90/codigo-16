@@ -31,25 +31,45 @@
     <div id="form">
         <h1>Entradas</h1>
         <input type="text" id="input_numero">
-        <input type="button" onclick="add();" value="agregar">
+        <input type="button" onclick="add();" value="add">
+        <input type="button" onclick="reverse();" value="rev">
+        <input type="button" onclick="reset();" value="reset">
     </div>
     <div id="container"></div>
 </body>
 <script>
     const div_container = document.getElementById('container');
 
-    const numeros = [];
+    let numeros = [];
     
     function add() {
         const numero = document.getElementById('input_numero').value;
         div_container.innerHTML = "";
+        div_container.innerHTML += "<hr>";
 
         numeros.push(numero);
-        
+
         for (let n of numeros) {
             div_container.innerHTML += "<p>" + n + "</p>";
         }
         div_container.innerHTML += "<hr>";
+        document.getElementById('input_numero').value = "";
+        document.getElementById('input_numero').focus();
+    }
+
+    function reverse() {
+        numeros.reverse();
+        div_container.innerHTML = "";
+        div_container.innerHTML += "<hr>";
+        for (let n of numeros) {
+            div_container.innerHTML += "<p>" + n + "</p>";
+        }
+        div_container.innerHTML += "<hr>";
+    }
+
+    function reset() {
+        numeros = [];
+        div_container.innerHTML = "";
     }
 
 </script>
