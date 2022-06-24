@@ -33,14 +33,30 @@
     
     let frutas = ['pera', 'manzana', 'limon', 'fresa', 'naranja'];
 
-    let iter = 0;
-    while (iter < frutas.length) {
-        div_container.innerHTML += "<p>" + frutas[iter] + "</p>";
-        if (frutas[iter] == 'limon') {
-            break;
+    for (let index = 0; index < frutas.length; index++) {
+        if (frutas[index] == 'limon') {
+            continue;
         }
-        iter += 1; // iter = iter + 1 || iter++
+        div_container.innerHTML += "<p>" + frutas[index] + "</p>";
+        
     }
+
+
+
+    // for generico: 3 parametros.
+    // param1: declarar variable a iterar.
+    // param2: condicion del bucle.
+    // param3: cómo vamos a iterar la variable.
+    // separador de parametros: ;
+
+    // let iter = 0;
+    // while (iter < frutas.length) {
+    //     div_container.innerHTML += "<p>" + frutas[iter] + "</p>";
+    //     if (frutas[iter] == 'limon') {
+    //         break;
+    //     }
+    //     iter += 1; // iter = iter + 1 || iter++
+    // }
 
     div_container.innerHTML += "<hr>";
 
