@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucles</title>
+    <style>
+        #form {
+            width: 300px;
+            min-height: 60px;
+            background-color: #ddd;
+            margin: 20px auto;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        #container {
+            width: 300px;
+            min-height: 100px;
+            background-color: #ddd;
+            margin: 20px auto;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        p {
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="form">
+        <h1>Entradas</h1>
+        <input type="text" id="input_numero">
+        <input type="button" onclick="add();" value="agregar">
+    </div>
+    <div id="container"></div>
+</body>
+<script>
+    const div_container = document.getElementById('container');
+
+    const numeros = [];
+    
+    function add() {
+        const numero = document.getElementById('input_numero').value;
+        div_container.innerHTML = "";
+
+        numeros.push(numero);
+        
+        for (let n of numeros) {
+            div_container.innerHTML += "<p>" + n + "</p>";
+        }
+        div_container.innerHTML += "<hr>";
+    }
+
+</script>
+</html>
