@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 300px;
+            min-height: 100px;
+            background-color: #ccc;
+            margin: 20px auto;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        p {
+            margin: 0px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+</body>
+<script>
+    const container = document.getElementById('container');
+    const hr = document.createElement('hr');
+    const br = document.createElement('br');
+
+    function range(maximun_number) {
+        return Array.from(Array(maximun_number).keys())
+    }
+
+    const numero = 10;
+
+    for (let i = 1; i <= numero; i++) {
+        for (let j = 1; j <= 12; j++) {
+            let texto = i + " x " + j + " = " + (i*j);
+            container.innerHTML += "<p>" + texto + "</p>";
+        }
+        container.appendChild(br);
+    }
+
+    container.innerHTML += "<p>" + divisores + "</p>";
+
+    // divisor = kjdfhakjdhakjds
+    // primo = 2 divisores
+
+    // let frutas = ['manzana', 'pera', 'naranja', 'fresa', 'platano'];
+
+    // let iter = 0;
+    // while (true) {
+    //     if (frutas[iter] == 'naranja') break;
+    //     container.innerHTML += "<p>" + frutas[iter] + "</p>";
+    //     iter++;
+    // }
+
+    // container.appendChild(hr);
+
+    // for (let i = 0; i < frutas.length; i++) {
+    //     container.innerHTML += "<p>" + frutas[i] + "</p>";
+    // }
+
+    // container.appendChild(hr);
+
+    // for (let fruta of frutas) {
+    //     if (fruta == 'naranja') continue;
+    //     container.innerHTML += "<p>" + fruta + "</p>";
+    // }
+
+    // container.appendChild(hr);
+
+    // for (let index in frutas) {
+    //     container.innerHTML += "<p>" + frutas[index] + "</p>";
+    // }
+
+</script>
+</html>

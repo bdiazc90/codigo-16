@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#container {
+    margin: 30px auto;
+    width: 600px;
+}
+
+#list {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.task {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.task > a {
+    float: right;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.done {
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+}
+
+.delete > span {
+    text-decoration: line-through solid red 2px;
+    color: gray;
+    margin-left: 24px;
+}
+
+.delete > input {
+    display: none;
+}
+
+.task:hover {
+    background-color: #ddd;
+}
+.done:hover {
+    background-color: rgb(64, 64, 134);
+}
+
+.newtask {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+input[type='checkbox'] {
+    transform: scale(1.5);
+    margin-right: 10px;
+}
+
+input[type='text'] {
+    margin-left: 5%;
+    width: 75%;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+input[type='button'] {
+    width: 19%;
+    background-color: white;
+    border: 1px dashed #ddd;
+    border-radius: 10px;
+    height: 26px;
+}
+
+input[type='button']:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}

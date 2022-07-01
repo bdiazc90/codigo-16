@@ -72,3 +72,13 @@ function deleteTask(anchor) {
     const task = arrayTasks.find(task => task.id == task_id);
     task.delete();
 }
+
+// NUEVAS FUNCIONALIDADES:
+// function updateTask(task todo) {}
+// function uncheckTask(task done) {}
+// function setPriorityTask(task todo) {}
+
+// SETTINGS:
+// function sortTasks() {}
+// function showDoneTask() {}
+// function showDeletedTask() {}
