@@ -9,20 +9,24 @@ class Task {
     this.deleted_at = null;
   }
 
-  done() {
-    this.status = "done";
-    this.done_at = new Date(); // fecha y hora actual.
+  changeStatus(status) {
+    this.status = status;
+
+    status === "delete"
+      ? (this.deleted_at = new Date())
+      : (this.done_at = new Date());
+
     const element = document.querySelector("#" + this.id);
-    element.classList.add("done");
+    element.classList.add(status);
     element.classList.remove("todo");
   }
 
+  done() {
+    this.changeStatus("done");
+  }
+
   delete() {
-    this.status = "delete";
-    this.deleted_at = new Date();
-    const element = document.querySelector("#" + this.id);
-    element.classList.add("delete");
-    element.classList.remove("todo");
+    this.changeStatus("delete");
   }
 
   createElement() {

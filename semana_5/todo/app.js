@@ -1,6 +1,7 @@
 // DOM:
 const listTasks = document.querySelector("#list");
 const inputTask = document.querySelector("#input_newtask");
+
 inputTask.focus();
 
 const arrayTasks = [];
@@ -23,17 +24,17 @@ function addTask() {
 
 function checkTask(checkbox) {
   if (checkbox.checked) {
-    const task_id = checkbox.parentElement.id;
-    const task = arrayTasks.find((task) => task.id == task_id);
-    task.done();
+    parentTask(checkbox).done();
     checkbox.setAttribute("disabled", true);
   }
 }
 
 function deleteTask(anchor) {
-  const task_id = anchor.parentElement.id;
-  const task = arrayTasks.find((task) => task.id == task_id);
-  task.delete();
+  parentTask(anchor).delete();
+}
+
+function parentTask(element) {
+  return arrayTasks.find((task) => task.id == element.parentElement.id);
 }
 
 const chxTaskDone = document.querySelector("#chx_task_done");
