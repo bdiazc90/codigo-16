@@ -38,6 +38,10 @@ function updateTask(anchor) {
   parentTask(anchor).update(newText);
 }
 
+/**
+ * Recurden que parentTask busca en el array de tareas 
+ * el element por id
+ */
 function parentTask(element) {
   return arrayTasks.find(
     (task) => task.id == element.parentElement.parentElement.id

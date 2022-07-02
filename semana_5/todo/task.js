@@ -34,10 +34,12 @@ class Task {
     // children: Busca los elementos hijos
     // Nota recurden que ponemos 0 porque p tiene 2 div hijos
     // Versiona larga
-    // const primerDiv = element.children[0];
-    // const span = (primerDiv.children[1].textContent = newText);
-    // Version corta
-    element.children[0].children[1].textContent = newText;
+    const primerDiv = element.children[0];
+    const span = primerDiv.children[1]; // 0 => input, 1=> span
+    // ya tenemos al span, solo falta cambiarle el texto
+    // span tiene la propieda textContent la cual permite
+    // cambiar el contenido
+    span.textContent = newText;
   }
 
   createElement() {
