@@ -34,7 +34,9 @@ function deleteTask(anchor) {
 }
 
 function parentTask(element) {
-  return arrayTasks.find((task) => task.id == element.parentElement.id);
+  return arrayTasks.find(
+    (task) => task.id == element.parentElement.parentElement.id
+  );
 }
 
 const chxTaskDone = document.querySelector("#chx_task_done");

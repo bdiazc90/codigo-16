@@ -34,9 +34,14 @@ class Task {
     element.setAttribute("id", this.id);
     element.setAttribute("class", "task todo");
     element.innerHTML = `
-            <input type="checkbox" onchange="checkTask(this);">
-            <span>${this.text}</span>
-            <a onclick="deleteTask(this);">❌</a>
+      <div>
+        <input type="checkbox" onchange="checkTask(this);">
+        <span>${this.text}</span>
+      </div>
+      <div>
+        <a onclick="deleteTask(this);">✏️</a>
+        <a onclick="deleteTask(this);">❌</a>
+      </div>
         `;
     return element; // elemento HTML
   }
