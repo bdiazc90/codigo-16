@@ -29,6 +29,17 @@ class Task {
     this.changeStatus("delete");
   }
 
+  update(newText) {
+    const element = document.querySelector(`#${this.id}`);
+    // children: Busca los elementos hijos
+    // Nota recurden que ponemos 0 porque p tiene 2 div hijos
+    // Versiona larga
+    // const primerDiv = element.children[0];
+    // const span = (primerDiv.children[1].textContent = newText);
+    // Version corta
+    element.children[0].children[1].textContent = newText;
+  }
+
   createElement() {
     const element = document.createElement("p");
     element.setAttribute("id", this.id);
@@ -39,7 +50,7 @@ class Task {
         <span>${this.text}</span>
       </div>
       <div>
-        <a onclick="deleteTask(this);">✏️</a>
+        <a onclick="updateTask(this);">✏️</a>
         <a onclick="deleteTask(this);">❌</a>
       </div>
         `;

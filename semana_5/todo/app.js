@@ -33,6 +33,11 @@ function deleteTask(anchor) {
   parentTask(anchor).delete();
 }
 
+function updateTask(anchor) {
+  const newText = prompt("Ingrese el nuevo nombre de su tarea");
+  parentTask(anchor).update(newText);
+}
+
 function parentTask(element) {
   return arrayTasks.find(
     (task) => task.id == element.parentElement.parentElement.id
