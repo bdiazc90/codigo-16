@@ -1,3 +1,4 @@
+const inputEmail = document.querySelector("#input-email");
 const inputPassword = document.querySelector("#input-password");
 const inputPasswordConfirm = document.querySelector("#input-password-confirm");
 const checkBoxShowPassword = document.querySelector("#checkbox-show-password");
@@ -60,8 +61,8 @@ inputPhoneNumber.onkeyup = function () {
     }
   });
 
-//   // Luego de iterar el array y verificar que solo agregue los numeros
-//   // a la variable newValue decimos que el valor del input sera newValue
+  //   // Luego de iterar el array y verificar que solo agregue los numeros
+  //   // a la variable newValue decimos que el valor del input sera newValue
   this.value = newValue;
 };
 
@@ -71,3 +72,19 @@ inputPhoneNumber.onkeyup = function () {
 //     .filter((caracter) => !isNaN(Number(caracter)))
 //     .join("");
 // };
+
+inputEmail.onkeyup = function () {
+  const value = this.value;
+
+  const regex =
+    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/gm;
+
+  console.log(regex.test(value));
+  // Reto
+  //Si regex es falso muestren un mensaje de error
+  // Si es verdade no muestren nada
+};
+
+// Existe una opcion llamada expresiones regulares en ingles regex
+// Esto es un conjunto de caracteres que nos permite validar sintaxis,
+// es decir como esta escrito
