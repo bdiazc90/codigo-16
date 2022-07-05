@@ -18,6 +18,11 @@
   border-radius: 10px;
 }
 
+#settings > p {
+    padding: 10px;
+    margin: 10px;
+}
+
 .task {
   padding: 10px;
   margin: 10px;

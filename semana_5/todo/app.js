@@ -78,6 +78,15 @@ function showOrHideElement(checked, typeOne, typeTwo) {
   }
 }
 
+document.querySelector('#chx_task_done').addEventListener('change', function() {
+    if (this.checked) {
+        document.querySelectorAll(".done").forEach(task => task.style.display = 'block');
+    } else {
+        document.querySelectorAll(".done").forEach(task => task.style.display = 'none');
+    }
+    // 
+});
+
 // NUEVAS FUNCIONALIDADES:
 // function updateTask(task todo) {}
 // function uncheckTask(task done) {}
