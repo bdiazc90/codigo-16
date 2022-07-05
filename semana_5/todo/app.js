@@ -39,7 +39,7 @@ function updateTask(anchor) {
 }
 
 /**
- * Recurden que parentTask busca en el array de tareas 
+ * Recurden que parentTask busca en el array de tareas
  * el element por id
  */
 function parentTask(element) {
