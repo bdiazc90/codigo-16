@@ -70,4 +70,22 @@ input[type='button']:disabled {
 #game > span {
     margin: 10px auto;
     font-size: 2rem;
+    max-width: 75%;
+    overflow-wrap: break-word;
+}
+
+/* Score */
+#score {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    display: block;
+    text-align: center;
+}
+#h3_sattempts {
+    color: green;
+}
+#h3_fattempts {
+    color: red;
 }
