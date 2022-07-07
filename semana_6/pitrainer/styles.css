@@ -4,9 +4,53 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container-modal {
+  display: flex;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+
+.lost-container {
+  display: none;
+  background-color: #fff;
+  padding: 40px;
+  width: 400px;
+  border-radius: 12px;
+  text-align: center;
+  z-index: 1;
+}
+
+.lost-container > h2 {
+  color: crimson;
+}
+
+.lost-container > h3 {
+  color: rgb(89, 211, 166);
+}
+
+.lost-container > button {
+  border: #003762;
+  background-color: #003762;
+  padding: 12px;
+  color: #fff;
+  border-radius: 8px;
+  width: 200px;
+  cursor: pointer;
+}
+
 #container {
   width: 600px;
   margin: 30px auto;
+  position: absolute;
+  /* z-index: -1; */
 }
 
 input {
@@ -93,11 +137,11 @@ input[type="button"]:disabled {
   text-align: center;
 }
 
-#h3_sattempts {
+#h3_success_attempts {
   color: green;
 }
 
-#h3_fattempts {
+#h3_failed_attempts {
   color: red;
 }
 

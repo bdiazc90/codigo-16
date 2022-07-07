@@ -8,29 +8,38 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="container">
-      <h1>Pi trainer</h1>
-      <div id="player">
-        <input
-          type="text"
-          id="username"
-          placeholder="Username..."
-          autocomplete="off"
-        />
-        <input type="button" value="Start" id="start" disabled />
-        <h2></h2>
+    <div class="container-modal">
+      <div class="lost-container">
+        <h2>Perdiste</h2>
+        <p>Llegaste al los 10 intentos</p>
+        <h3>Score<span>10</span></h3>
+        <button>Reinciar</button>
       </div>
 
-      <div id="game">
-        <input type="text" id="user_pi" />
-        <span id="result_pi">3.</span>
-      </div>
+      <div id="container">
+        <h1>Pi trainer</h1>
+        <div id="player">
+          <input
+            type="text"
+            id="username"
+            placeholder="Username..."
+            autocomplete="off"
+          />
+          <input type="button" value="Start" id="start" disabled />
+          <h2></h2>
+        </div>
 
-      <div id="score">
-        <h3 id="h3_attempts">Intentos:&nbsp;<span></span></h3>
-        <h3 id="h3_sattempts">Correctos:&nbsp;<span></span></h3>
-        <h3 id="h3_fattempts">Fallidos:&nbsp;<span></span></h3>
-        <h3 id="h3_score">Score:&nbsp;<span></span></h3>
+        <div id="game">
+          <input type="text" id="user_pi" />
+          <span id="result_pi">3.</span>
+        </div>
+
+        <div id="score">
+          <h3 id="h3_attempts">Intentos:&nbsp;<span></span></h3>
+          <h3 id="h3_success_attempts">Correctos:&nbsp;<span></span></h3>
+          <h3 id="h3_failed_attempts">Fallidos:&nbsp;<span></span></h3>
+          <h3 id="h3_score">Score:&nbsp;<span></span></h3>
+        </div>
       </div>
     </div>
   </body>

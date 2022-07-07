@@ -25,18 +25,22 @@ const pi_decimals =
 
 let position = 0;
 let attempts = 0;
-let sattempts = 0;
-let fattempts = 0;
+let success_attempts = 0;
+let failed_attempts = 0;
 let score = 0;
 // variables de tiempo
 let last_attempt = null;
+
+const container_modal = document.querySelector(".container-modal");
+const lost_container = document.querySelector(".lost-container");
+const container = document.querySelector("#container");
 
 const input_pi = document.querySelector("#user_pi");
 const result_pi = document.querySelector("#result_pi");
 
 const h3_attempts = document.querySelector("#h3_attempts");
-const h3_sattempts = document.querySelector("#h3_sattempts");
-const h3_fattempts = document.querySelector("#h3_fattempts");
+const h3_success_attempts = document.querySelector("#h3_success_attempts");
+const h3_failed_attempts = document.querySelector("#h3_failed_attempts");
 const h3_score = document.querySelector("#h3_score");
 
 // KeyDown -> KeyPress -> input value -> KeyUp
@@ -60,7 +64,8 @@ input_pi.addEventListener("keydown", function (evt) {
     decimal != pi_decimals.charAt(position)
   ) {
     div_game.style.backgroundColor = "red";
-    fattempts++;
+    failed_attempts++;
+    showModal(failed_attempts);
   } else {
     // si pasó las reglas:
     // recuerden que la primera vez position es 0
@@ -71,7 +76,7 @@ input_pi.addEventListener("keydown", function (evt) {
     div_game.style.backgroundColor = "green";
     result_pi.innerText += decimal;
     position++;
-    sattempts++;
+    success_attempts++;
   }
 
   last_attempt = now_attempt;
@@ -82,8 +87,8 @@ input_pi.addEventListener("keydown", function (evt) {
 
   // SCORE:
   h3_attempts.querySelector("span").innerText = attempts;
-  h3_sattempts.querySelector("span").innerText = sattempts;
-  h3_fattempts.querySelector("span").innerText = fattempts;
+  h3_success_attempts.querySelector("span").innerText = success_attempts;
+  h3_failed_attempts.querySelector("span").innerText = failed_attempts;
   h3_score.querySelector("span").innerText = score.toFixed(2);
 });
 
@@ -114,4 +119,14 @@ function calcScore(now_attempt) {
   // score = 10 + 2 - (diff_time * 0.01)
   // cuando lleguemos a 30 - 39
   // score = 10 + 3 - (diff_time * 0.01)
+}
+
+function showModal(failed_attempts) {
+  if (failed_attempts === 10) {
+    // activamos los estilos
+    container_modal.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    lost_container.style.display = "block";
+    container.style.zIndex = -1;
+    input_pi.disabled = true;
+  }
 }
