@@ -42,6 +42,8 @@ const h3_attempts = document.querySelector("#h3_attempts");
 const h3_success_attempts = document.querySelector("#h3_success_attempts");
 const h3_failed_attempts = document.querySelector("#h3_failed_attempts");
 const h3_score = document.querySelector("#h3_score");
+const h3_score_finish = document.querySelector("#h3_score_finish");
+const btn_reiniciar = document.querySelector("#btn-reiniciar");
 
 // KeyDown -> KeyPress -> input value -> KeyUp
 input_pi.addEventListener("keyup", function () {
@@ -128,5 +130,8 @@ function showModal(failed_attempts) {
     lost_container.style.display = "block";
     container.style.zIndex = -1;
     input_pi.disabled = true;
+    h3_score_finish.querySelector("span").innerText = score.toFixed(2);
   }
 }
+
+btn_reiniciar.onclick = () => window.location.reload();
