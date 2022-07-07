@@ -7,11 +7,38 @@ input_username.addEventListener("keyup", function () {
   button_start.disabled = this.value == "";
 });
 
+//* JSON.parse: string => objeto
+//* JSON.stringify: objeto => string
+
+//* Para poder recuperar un dato de localStorage podemos usar las funciion
+//* localStorage.getItem("key")
+//* El parametro quen recibe getItem es el key
+
+console.log("username", localStorage.getItem("user_name"));
+// Para convertir de string a objeto
+console.log("objeto user", JSON.parse(localStorage.getItem("obj_user")));
+
 button_start.addEventListener("click", function () {
   this.parentElement.querySelector(
     "h2"
   ).innerText += `Hello ${input_username.value}, let's play`;
   this.parentElement.querySelector("h2").style.display = "block";
+
+  // vamos a guardar el nombre del usuario el localStorage
+  // para usar esto hacemos lo siguiente
+
+  //* localStorage.setItem = Es la funcion que pormite guardar un string en localStorage
+  //* este recibe 2 parametros
+  //* 1 => key
+  //* 2 => value
+  localStorage.setItem("user_name", input_username.value);
+  // para guardar datos mas complejos
+  const objetoUser = {
+    user_name: input_username.value,
+    created_at: new Date(),
+  };
+  //JSON.stringify(): Convierte objetos a strings
+  localStorage.setItem("obj_user", JSON.stringify(objetoUser));
 
   input_username.disabled = true;
   this.disabled = true;
