@@ -30,6 +30,21 @@ function addUserToLocalStorage(user) {
     localStorage.setItem("pitrainer.users", JSON.stringify(users));
 }
 
+const button_clear = document.querySelector("#clear");
+
+if (users.length !== 0) {
+    div_history = document.querySelector('#history');
+    div_history.style.display = 'block';
+    createTableHistoric();
+    button_clear.disabled = false;
+}
+
+// Botón para reiniciar la tabla de historic:
+button_clear.addEventListener('click', function () {
+    localStorage.removeItem("pitrainer.users");
+    window.location.reload();
+});
+
 function createTableHistoric() {
     const table_history = document.querySelector('#history > table');
 

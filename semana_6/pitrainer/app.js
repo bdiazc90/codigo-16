@@ -8,8 +8,6 @@ input_username.addEventListener("keyup", function () {
     button_start.disabled = this.value == "";
 });
 
-createTableHistoric();
-
 button_start.addEventListener("click", function () {
     this.parentElement.querySelector(
         "h2"
