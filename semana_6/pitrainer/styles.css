@@ -148,3 +148,20 @@ input[type="button"]:disabled {
 #h3_score {
   color: blue;
 }
+
+/* History */
+#history > table {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px #ddd solid;
+}
+
+#history th {
+  padding: 10px;
+  text-align: center;
+}
+#history td {
+  padding: 10px;
+  text-align: center;
+  border-top: 1px #ddd solid;
+}
