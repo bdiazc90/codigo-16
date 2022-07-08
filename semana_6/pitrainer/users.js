@@ -15,21 +15,18 @@ class User {
 }
 
 // Arreglo de usuarios:
-let users = null;
+let users = [];
 
 // Comprobar si existe el item "pitrainer.users"
 if (localStorage.getItem("pitrainer.users") !== null) {
-    users = JSON.parse(localStorage.getItem("pitrainer.users"));
+    const cadena_texto_users = localStorage.getItem("pitrainer.users");
+    
+    users = JSON.parse(cadena_texto_users);
 }
 
 function addUserToLocalStorage(user) {
-    // Comprobar si existe una lista de usuarios en el LS:
-    if (users !== null) {
-        users.push(user);
-    } else {
-        users = [];
-        users.push(user);
-    }
+    users.push(user);
+    // lo sobreescribo en el LS:
     localStorage.setItem("pitrainer.users", JSON.stringify(users));
 }
 
@@ -39,12 +36,20 @@ function createTableHistoric() {
     users.forEach(function (user) {
         // Creo un node object llamado ROW
         const row = document.createElement('tr');
+        const gameover_at = new Date(user.gameover_at);
         // Personalizo el node:
         row.innerHTML = `
         <td>${user.username}</td>
-        <td>${user.score}</td>
+        <td>${user.score.toFixed(2)}</td>
         <td>${user.success_attempts}</td>
-        <td>${user.gameover_at.toLocaleString()}</td>
+        <td>${gameover_at.toLocaleDateString("es-PE", {
+            weekday: "short",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric"
+          })}</td>
         `;
         // Lo agrega como un hijo de la tabla:
         table_history.append(row);

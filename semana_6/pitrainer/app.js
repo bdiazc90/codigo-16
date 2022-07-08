@@ -8,6 +8,7 @@ input_username.addEventListener("keyup", function () {
     button_start.disabled = this.value == "";
 });
 
+createTableHistoric();
 
 button_start.addEventListener("click", function () {
     this.parentElement.querySelector(
@@ -22,7 +23,7 @@ button_start.addEventListener("click", function () {
     this.disabled = true;
     div_game.style.display = "flex";
 
-    createTableHistoric();
+    
 });
 
 // GAME:
