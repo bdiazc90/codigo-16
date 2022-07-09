@@ -56,44 +56,43 @@ function createTableHistoric() {
 
     container_history.append(h4);
     // crear la table
-    const table = document.createElement("table");
-    const thead = document.createElement("thead");
+    const table = document.createElement("table"); // <table></table>
+    const thead = document.createElement("thead"); // <thead></thead>
 
     thead.innerHTML = `
 		<tr>
 			<th>Score</th>
 			<th>Attempts</th>
-			<th>Success Attempts</th>
-			<th>Failed Attempts</th>
+			<th>✅ </th>
+			<th>❌ </th>
 			<th>Game Over</th>
 		</tr>	
 		`;
 
+    const tbody = document.createElement("tbody");
+    // entonces debemos iterar lo que es user.games
+
+    user.games.forEach((game) => {
+      tbody.innerHTML += `
+				<tr>
+					<td>${game.score.toFixed(2)}</td>
+					<td>${game.attempts}</td>
+					<td>${game.success_attempts}</td>
+					<td>${game.failed_attempts}</td>
+					<td>${new Date(game.gameover_at).toLocaleString("es-PE", {
+            weekday: "short",
+            year: "2-digit",
+            month: "short",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+          })}</td>
+				</tr>
+			`;
+    });
+
     table.append(thead);
+    table.append(tbody);
     container_history.append(table);
   });
-
-  // users.forEach(function (user) {
-  //   // Creo un node object llamado ROW
-  //   const row = document.createElement("tr");
-  //   const gameover_at = new Date(user.gameover_at);
-  //   // Personalizo el node:
-  //   row.innerHTML = `
-  //       <td>${user.username}</td>
-
-  //       `;
-
-  // <td>${user.score.toFixed(2)}</td>
-  // <td>${user.success_attempts}</td>
-  // <td>${gameover_at.toLocaleDateString("es-PE", {
-  //   weekday: "short",
-  //   year: "numeric",
-  //   month: "long",
-  //   day: "numeric",
-  //   hour: "numeric",
-  //   minute: "numeric",
-  // })}</td>
-  // Lo agrega como un hijo de la tabla:
-  // table_history.append(row);
-  // });
 }
