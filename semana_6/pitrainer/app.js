@@ -109,7 +109,12 @@ function calcScore(now_attempt) {
 function evalGameOver() {
   if (failed_attempts >= 10) {
     // activamos los estilos
+    // disabled scroll
+    document.body.style.overflow = "hidden";
     container_modal.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    container_modal.style.position = "relative";
+    container_modal.style.height = "100vh";
+    container.style.position = "absolute";
     lost_container.style.display = "block";
     container.style.zIndex = -1;
     input_pi.disabled = true;

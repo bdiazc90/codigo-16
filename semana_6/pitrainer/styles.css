@@ -14,8 +14,8 @@ body {
   /* background-color: rgba(0, 0, 0, 0.5); */
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  position: relative;
+  /* height: 100vh; */
+  /* position: relative; */
 }
 
 .lost-container {
@@ -49,7 +49,7 @@ body {
 #container {
   width: 600px;
   margin: 30px auto;
-  position: absolute;
+  /* position: absolute; */
   /* z-index: -1; */
 }
 
