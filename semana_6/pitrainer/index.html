@@ -33,7 +33,13 @@
             placeholder="Username..."
             autocomplete="off"
           />
-          <input type="button" value="Start" id="start" disabled />
+          <input
+            type="button"
+            value="Start"
+            class="start"
+            id="start"
+            disabled
+          />
           <h2></h2>
         </div>
 
@@ -50,6 +56,10 @@
         </div>
         <div id="history">
           <h2>History</h2>
+          <div>
+            <input type="text" placeholder="Buscar usuario" id="input-buscar" />
+            <button class="start" id="btn-buscar">Buscar</button>
+          </div>
           <div id="history_container"></div>
           <input type="button" value="Clear" id="clear" disabled />
         </div>

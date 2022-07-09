@@ -158,3 +158,18 @@ function setObjectGame() {
 }
 
 btn_reiniciar.onclick = () => window.location.reload();
+
+// buscador
+const btnBuscar = document.querySelector("#btn-buscar");
+const inputBuscar = document.querySelector("#input-buscar");
+
+btnBuscar.onclick = function () {
+  // queremos buscar en el array de users
+  const username = inputBuscar.value;
+
+  const filterUsers = users.filter((user) => user.username.includes(username));
+
+  createTableHistoric(filterUsers);
+
+  inputBuscar.value = "";
+};
