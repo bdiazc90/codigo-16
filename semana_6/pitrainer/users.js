@@ -25,6 +25,11 @@ function addUserToLocalStorage(user) {
   localStorage.setItem("pitrainer.users", JSON.stringify(users));
 }
 
+function updateUserLocalStorage(users) {
+  localStorage.removeItem("pitrainer.users");
+  localStorage.setItem("pitrainer.users", JSON.stringify(users));
+}
+
 const button_clear = document.querySelector("#clear");
 
 if (users.length !== 0) {
@@ -50,17 +55,19 @@ function createTableHistoric() {
     // Personalizo el node:
     row.innerHTML = `
         <td>${user.username}</td>
-        <td>${user.score.toFixed(2)}</td>
-        <td>${user.success_attempts}</td>
-        <td>${gameover_at.toLocaleDateString("es-PE", {
-          weekday: "short",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          hour: "numeric",
-          minute: "numeric",
-        })}</td>
+        
         `;
+
+    // <td>${user.score.toFixed(2)}</td>
+    // <td>${user.success_attempts}</td>
+    // <td>${gameover_at.toLocaleDateString("es-PE", {
+    //   weekday: "short",
+    //   year: "numeric",
+    //   month: "long",
+    //   day: "numeric",
+    //   hour: "numeric",
+    //   minute: "numeric",
+    // })}</td>
     // Lo agrega como un hijo de la tabla:
     table_history.append(row);
   });

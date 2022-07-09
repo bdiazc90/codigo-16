@@ -2,7 +2,7 @@
 const input_username = document.querySelector("#username");
 const button_start = document.querySelector("#start");
 const div_game = document.querySelector("#game");
-user = null;
+let user = null;
 
 input_username.addEventListener("keyup", function () {
   button_start.disabled = this.value == "";
@@ -114,17 +114,42 @@ function evalGameOver() {
     container.style.zIndex = -1;
     input_pi.disabled = true;
     h3_score_finish.querySelector("span").innerText = score.toFixed(2);
-    // Crear el usuario y agregarlo a la lista de usuarios:
-    if (user !== null) {
-      user.games.push({
-        score: score,
-        attempts: attempts,
-        success_attempts: success_attempts,
-        failed_attempts: failed_attempts,
-        gameover_at: user.gameover(),
-      });
 
-      addUserToLocalStorage(user);
+    if (user !== null) {
+      // caso juanito
+      const user_index = users.findIndex(
+        (user_find) => user_find.username === user.username
+      );
+
+      // juanito no existe en el array de usuarios por ende la funcion findIndex retorna
+      // -1, porque no encontro a la persona
+
+      // nota: Si findIndex no encuentra lo busquedo retornara -1 porque no encontro
+      // ni una posicion
+      if (user_index === -1) {
+        // si entra al if el usuario no existe
+        user.games.push({
+          score: score,
+          attempts: attempts,
+          success_attempts: success_attempts,
+          failed_attempts: failed_attempts,
+          gameover_at: user.gameover(),
+        });
+
+        addUserToLocalStorage(user);
+      } else {
+        // si entra ya exister
+        users[user_index].games.push({
+          score: score,
+          attempts: attempts,
+          success_attempts: success_attempts,
+          failed_attempts: failed_attempts,
+          gameover_at: user.gameover(),
+        });
+
+        updateUserLocalStorage(users);
+        // debemos agregar este dato a locastorage
+      }
     }
   }
 }
