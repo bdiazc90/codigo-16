@@ -150,27 +150,25 @@ input[type="button"]:disabled {
 }
 
 /* History */
-#history {
-  display: none;
-}
 
-#history > table {
+table {
   width: 100%;
   border-radius: 10px;
   border: 1px #ddd solid;
 }
 
-#history th {
+th {
   padding: 10px;
   text-align: center;
 }
-#history td {
+
+td {
   padding: 10px;
   text-align: center;
   border-top: 1px #ddd solid;
 }
 
-#history input {
+input {
   margin-top: 10px;
   float: right;
 }
