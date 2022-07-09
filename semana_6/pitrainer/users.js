@@ -46,6 +46,7 @@ button_clear.addEventListener("click", function () {
 });
 
 function createTableHistoric() {
+<<<<<<< Updated upstream
   // const table_history = document.querySelector("#history > table");
   const container_history = document.querySelector("#history_container");
 
@@ -95,4 +96,22 @@ function createTableHistoric() {
     table.append(tbody);
     container_history.append(table);
   });
+=======
+	const table_history = document.querySelector("#history > table");
+
+	users.forEach(function (user) {
+		// Creo un node object llamado ROW
+		const row = document.createElement("tr");
+		const gameover_at = new Date(user.gameover_at);
+		// Personalizo el node:
+		row.innerHTML = `
+        <td>${user.username}</td>
+        <td>${user.score.toFixed(2)}</td>
+        <td>${user.success_attempts}</td>
+        <td>${gameover_at.toLocaleDateString()}</td>
+        `;
+		// Lo agrega como un hijo de la tabla:
+		table_history.append(row);
+	});
+>>>>>>> Stashed changes
 }
