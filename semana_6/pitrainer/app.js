@@ -109,54 +109,52 @@ function calcScore(now_attempt) {
 function evalGameOver() {
   if (failed_attempts >= 10) {
     // activamos los estilos
-    // disabled scroll
-    document.body.style.overflow = "hidden";
-    container_modal.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-    container_modal.style.position = "relative";
-    container_modal.style.height = "100vh";
-    container.style.position = "absolute";
-    lost_container.style.display = "block";
-    container.style.zIndex = -1;
-    input_pi.disabled = true;
-    h3_score_finish.querySelector("span").innerText = score.toFixed(2);
+    setStyles();
 
-    if (user !== null) {
-      // caso juanito
-      const user_index = users.findIndex(
-        (user_find) => user_find.username === user.username
-      );
+    if (user === null) return;
 
-      // juanito no existe en el array de usuarios por ende la funcion findIndex retorna
-      // -1, porque no encontro a la persona
-
-      // nota: Si findIndex no encuentra lo busquedo retornara -1 porque no encontro
-      // ni una posicion
-      if (user_index === -1) {
-        // si entra al if el usuario no existe
-        user.games.push({
-          score: score,
-          attempts: attempts,
-          success_attempts: success_attempts,
-          failed_attempts: failed_attempts,
-          gameover_at: user.gameover(),
-        });
-
-        addUserToLocalStorage(user);
-      } else {
-        // si entra ya exister
-        users[user_index].games.push({
-          score: score,
-          attempts: attempts,
-          success_attempts: success_attempts,
-          failed_attempts: failed_attempts,
-          gameover_at: user.gameover(),
-        });
-
-        updateUserLocalStorage(users);
-        // debemos agregar este dato a locastorage
-      }
+    // caso juanito
+    const user_index = findIndexUser();
+    // juanito no existe en el array de usuarios por ende la funcion findIndex retorna
+    // -1, porque no encontro a la persona
+    // nota: Si findIndex no encuentra lo busquedo retornara -1 porque no encontro
+    // ni una posicion
+    if (user_index !== -1) {
+      users[user_index].games.push(setObjectGame());
+      updateUserLocalStorage(users);
+      return;
     }
+
+    user.games.push(setObjectGame());
+    addUserToLocalStorage(user);
   }
+}
+
+function setStyles() {
+  // disabled scroll
+  document.body.style.overflow = "hidden";
+  container_modal.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+  container_modal.style.position = "relative";
+  container_modal.style.height = "100vh";
+  container.style.position = "absolute";
+  lost_container.style.display = "block";
+  container.style.zIndex = -1;
+  input_pi.disabled = true;
+  h3_score_finish.querySelector("span").innerText = score.toFixed(2);
+}
+
+function findIndexUser() {
+  return users.findIndex((user_find) => user_find.username === user.username);
+}
+
+function setObjectGame() {
+  return {
+    score,
+    attempts,
+    success_attempts,
+    failed_attempts,
+    gameover_at: user.gameover(),
+  };
 }
 
 btn_reiniciar.onclick = () => window.location.reload();
