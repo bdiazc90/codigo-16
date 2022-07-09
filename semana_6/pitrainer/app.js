@@ -167,7 +167,9 @@ btnBuscar.onclick = function () {
   // queremos buscar en el array de users
   const username = inputBuscar.value;
 
-  const filterUsers = users.filter((user) => user.username.includes(username));
+  const filterUsers = users.filter((user) =>
+    user.username.toLowerCase().includes(username)
+  );
 
   createTableHistoric(filterUsers);
 
