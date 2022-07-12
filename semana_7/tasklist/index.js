@@ -18,16 +18,6 @@ Ejemplo
 //* Nota: Esta funcion que empieza con $(function) se
 //* ejecuta cuando la pagina web inicia
 //* Esto es solo en JQUERY
-// $(function () {
-//   // el acceder de esta forma a los elementos nos da acceso a las funciones de jquery
-//   $("h1").css("color", "red");
-//   // multiples estilos
-//   $("h1").css({
-//     "background-color": "blue",
-//     "font-size": "100px",
-//     "font-family": "Helvetica",
-//   });
-// });
 
 //* En JS puro IIFE
 // (function () {
@@ -38,12 +28,26 @@ const inputTask = $("#input-task");
 const btnTask = $("#btn-task");
 const sectionTask = $("#section-task");
 
+$(function () {
+  if (arrayTask.length > 0) {
+    // aca iteremos el array y pintemos las tareas
+    arrayTask.forEach((task) => {
+      createInputTask(task.id, task.text);
+    });
+  }
+});
+
 // btnTask.on("click", function () {});
 btnTask.click(function () {
   const text = inputTask.val();
 
+  const task = storeTask(text);
+  console.log("Task", task);
+
   inputTask.val("");
   inputTask.focus();
+
+  createInputTask(task.id, task.text);
 
   // para ocultar un elemento usamos hide()
   // hide() => para ocultar
@@ -52,9 +56,12 @@ btnTask.click(function () {
 
   // sectionTask.append(`<h1>${text}</h1>`);
   // esto es crear un elemento div
+});
+
+function createInputTask(id, text) {
   $("<div>", {
     html: `
-      <input type="checkbox"><span>${text}</span>
+      <input data-id="${id}" type="checkbox"><span>${text}</span>
       <button>✏️</button>
       <button>👁</button>
       <button>❌</button>
@@ -75,4 +82,4 @@ btnTask.click(function () {
       $(this).css("background-color", "#fff");
     }
   );
-});
+}
