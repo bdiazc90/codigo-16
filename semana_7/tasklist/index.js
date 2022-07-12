@@ -58,13 +58,24 @@ btnTask.click(function () {
   // esto es crear un elemento div
 });
 
+function deleteTask(element) {
+  const container = $(element).parent();
+
+  container.children("span").css({
+    "text-decoration": "line-through",
+  });
+
+  const id = container.children("input").data("id");
+  updateTask(id, "delete");
+}
+
 function createInputTask(id, text) {
   $("<div>", {
     html: `
       <input data-id="${id}" type="checkbox"><span>${text}</span>
       <button>✏️</button>
       <button>👁</button>
-      <button>❌</button>
+      <button onclick="deleteTask(this)">❌</button>
     `,
   })
     .appendTo(sectionTask)

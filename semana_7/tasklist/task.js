@@ -16,6 +16,14 @@ function storeTask(text) {
   return task;
 }
 
+function updateTask(id, status) {
+  const task = arrayTask.find((task) => task.id === id);
+  // esta actualizando la propiedad status en base al que recibimos como parametros
+  task.status = status;
+  // para actualizar la data en localStorage solo hace falta llamar a la funcion saveInLocalStorga()
+  saveInLocalStorage();
+}
+
 function saveInLocalStorage() {
   localStorage.setItem("tasks", JSON.stringify(arrayTask));
 }
