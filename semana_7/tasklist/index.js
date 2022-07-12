@@ -66,15 +66,29 @@ function deleteTask(element) {
   });
 
   const id = container.children("input").data("id");
-  updateTask(id, "delete");
+  updateTask(id, "status", "delete");
+}
+
+function saveTask(element, id) {
+  const container = $(element).parent();
+  const containerFather = $(element).parent().parent();
+  const newText = container.children("input").val();
+  updateTask(id, "text", newText);
+  container.children().hide();
+  containerFather.children().show();
+  containerFather.children("span").text(newText);
 }
 
 function editTask(element) {
   const container = $(element).parent();
+  const id = container.children("input").data("id");
   container.children().hide();
   container.append(
     `
-    <input placeholder="editar tarea"/><button>✅</button>
+    <div>
+      <input placeholder="editar tarea"/>
+      <button onclick="saveTask(this, ${id})">✅</button>
+    </div>
     `
   );
 }
