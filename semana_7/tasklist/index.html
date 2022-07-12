@@ -6,11 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <style>
+    body {
+      font-family: Helvetica;
+    }
+  </style>
   <body>
-    <h1>Probando JQuery</h1>
+    <main>
+      <h1>Task List</h1>
+      <section>
+        <input
+          type="text"
+          id="input-task"
+          placeholder="Ingresa el nombre de la tarea"
+        />
+        <input type="button" id="btn-task" value="crear" />
+      </section>
+      <section id="section-task"></section>
+    </main>
   </body>
   <!-- !nota recurden que jquery debe estar antes, para que nuestro index.js pueda
   !usar las funciones de jquery -->
   <script src="./jquery.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
   <script src="./index.js"></script>
 </html>
