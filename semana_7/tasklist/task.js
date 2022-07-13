@@ -6,7 +6,7 @@ function storeTask(text) {
 	// 1,2,3,4,5,6
 	const task = {
 		id: arrayTask.length + 1,
-		text: "",
+		text,
 		status: "todo",
 		created_at: new Date(),
 	};
