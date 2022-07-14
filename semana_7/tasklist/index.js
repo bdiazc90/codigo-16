@@ -1,44 +1,46 @@
 const inputTask = $("#input-task");
 const btnTask = $("#btn-task");
+const formTask = $("#form-task");
 const sectionTask = $("#section-task");
 
 $(function () {
-	if (arrayTask.length > 0) {
-		// aca iteremos el array y pintemos las tareas
-		arrayTask.forEach((task) => {
-			createInputTask(task.id, task.text, task.status);
-		});
-	}
+  if (arrayTask.length > 0) {
+    // aca iteremos el array y pintemos las tareas
+    arrayTask.forEach((task) => {
+      createInputTask(task.id, task.text, task.status);
+    });
+  }
 });
 
-btnTask.click(function () {
-	const text = inputTask.val();
+formTask.submit(function (e) {
+  e.preventDefault()
+  const text = inputTask.val();
 
-	const task = storeTask(text);
-	console.log("Task", task);
+  const task = storeTask(text);
+  // console.log("Task", task);
 
-	inputTask.val("");
-	inputTask.focus();
+  inputTask.val("");
+  inputTask.focus();
 
-	createInputTask(task.id, task.text, task.status);
+  createInputTask(task.id, task.text, task.status);
 });
 
 function deleteTask(element) {
-	const div_task = $(element).closest(".row");
-	const id = div_task.data("id");
-	div_task
-		.find("label")
-		.addClass("text-uppercase text-decoration-line-through");
-	updateTask(id, "status", "delete");
+  const div_task = $(element).closest(".row");
+  const id = div_task.data("id");
+  div_task
+    .find("label")
+    .addClass("text-uppercase text-decoration-line-through");
+  updateTask(id, "status", "delete");
 }
 
 function saveTask(element) {
-	const div_task = $(element).closest(".row");
-	const id = Number(div_task.attr("data-id"));
-	const newText = div_task.find("input").val();
-	updateTask(id, "text", newText);
-	const task = arrayTask.find((task) => task.id === id);
-	div_task.html(`
+  const div_task = $(element).closest(".row");
+  const id = Number(div_task.attr("data-id"));
+  const newText = div_task.find("input").val();
+  updateTask(id, "text", newText);
+  const task = arrayTask.find((task) => task.id === id);
+  div_task.html(`
     <div class='col-6 col-sm-8 col-md-9'>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="check_${id}">
@@ -56,9 +58,9 @@ function saveTask(element) {
 }
 
 function editTask(element) {
-	const div_task = $(element).closest(".row");
-	const id = div_task.attr("data-id");
-	div_task.html(`
+  const div_task = $(element).closest(".row");
+  const id = div_task.attr("data-id");
+  div_task.html(`
       <div class='col-6 col-sm-8 col-md-9'>
         <input placeholder="editar tarea" type="text" class="form-control"/>
       </div>
@@ -69,9 +71,9 @@ function editTask(element) {
 }
 
 function createInputTask(id, text, status) {
-	$("<div class='row my-2' data-id='" + id + "'>")
-		.html(
-			`
+  $("<div class='row my-2' data-id='" + id + "'>")
+    .html(
+      `
       <div class='col-6 col-sm-8 col-md-9'>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="check_${id}">
@@ -86,8 +88,8 @@ function createInputTask(id, text, status) {
         <button class='btn btn-dark' onclick="deleteTask(this)">❌</button>
       </div>
     `
-		)
-		.appendTo(sectionTask)
-		.hide()
-		.fadeIn(1000);
+    )
+    .appendTo(sectionTask)
+    .hide()
+    .fadeIn(1000);
 }
