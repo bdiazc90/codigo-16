@@ -5,11 +5,28 @@ const form = document.querySelector("#form-task");
 const sectionTask = $("#section-task");
 
 $(function () {
+  // vamos a obtener el queryString de la url
+  const queryString = new URLSearchParams(window.location.search);
+  const filter = queryString.get("filter"); // todo || done || delete
+
+  console.log(filter);
+
   if (arrayTask.length > 0) {
     // aca iteremos el array y pintemos las tareas
     arrayTask.forEach((task) => {
       createInputTask(task.id, task.text, task.status);
     });
+
+    if (filter) {
+      const filterTask = arrayTask.filter((task) => task.status === filter);
+      console.log(filterTask);
+
+      const myModal = new bootstrap.Modal(
+        document.getElementById("exampleModal")
+      );
+
+      myModal.show();
+    }
   }
 });
 
