@@ -3,6 +3,7 @@ const btnTask = $("#btn-task");
 const formTask = $("#form-task");
 const form = document.querySelector("#form-task");
 const sectionTask = $("#section-task");
+const sectionDetailTask = $("#section-detail-task");
 
 $(function () {
   // vamos a obtener el queryString de la url
@@ -110,6 +111,29 @@ function editTask(element) {
   `);
 }
 
+function showTask(id) {
+  const task = arrayTask.find((task) => task.id === id);
+  sectionDetailTask.empty().show();
+
+  sectionDetailTask.append(
+    `
+    <div class="card" style="width: 300px; padding: 0;">
+      <img src="https://source.unsplash.com/user/erondu/300x200" class="card-img-top" />
+      <div class="card-body">
+        <div class="card-title">${task.text}</div>
+        <div class="card-text">
+        ${task.status}
+        </div>
+         <div class="card-text">
+        ${task.created_at}
+        </div>
+      </div>
+    </div>
+    `
+  );
+  // .fadeOut(5000);
+}
+
 function createInputTask(id, text, status) {
   $("<div class='row my-2' data-id='" + id + "'>")
     .html(
@@ -124,7 +148,7 @@ function createInputTask(id, text, status) {
       </div>
       <div class='col-6 col-sm-4 col-md-3'>
         <button class='btn btn-light' onclick="editTask(this)">✏️</button>
-        <button class='btn btn-light'>👁</button>
+        <button class='btn btn-light' onclick="showTask(${id})">👁</button>
         <button class='btn btn-dark' onclick="deleteTask(this)">❌</button>
       </div>
     `
