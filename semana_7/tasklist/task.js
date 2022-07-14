@@ -1,7 +1,5 @@
 let arrayTask = JSON.parse(localStorage.getItem("tasks")) || [];
 
-console.log("arrayTask", arrayTask);
-
 function storeTask(text) {
   // 1,2,3,4,5,6
   const task = {

@@ -1,16 +1,14 @@
 const inputTask = $("#input-task");
 const btnTask = $("#btn-task");
 const formTask = $("#form-task");
-const form = document.querySelector("#form-task");
 const sectionTask = $("#section-task");
 const sectionDetailTask = $("#section-detail-task");
+const form = document.querySelector("#form-task");
 
 $(function () {
   // vamos a obtener el queryString de la url
   const queryString = new URLSearchParams(window.location.search);
   const filter = queryString.get("filter"); // todo || done || delete
-
-  console.log(filter);
 
   if (arrayTask.length > 0) {
     // aca iteremos el array y pintemos las tareas
@@ -19,30 +17,32 @@ $(function () {
     });
 
     if (filter) {
-      const filterTask = arrayTask.filter((task) => task.status === filter);
+      showFilteredModalTask();
+    }
+  }
+});
 
-      const tbody = $("#tbody");
+function showFilteredModalTask() {
+  const filterTask = arrayTask.filter((task) => task.status === filter);
 
-      filterTask.forEach((task) => {
-        tbody.append(
-          `<tr>
+  const tbody = $("#tbody");
+
+  filterTask.forEach((task) => {
+    tbody.append(
+      `<tr>
             <td>${task.id}</td>
             <td>${task.text}</td>
             <td>${task.status}</td>
             <td>${task.created_at}</td>
           </tr>
           `
-        );
-      });
+    );
+  });
 
-      const myModal = new bootstrap.Modal(
-        document.getElementById("exampleModal")
-      );
+  const myModal = new bootstrap.Modal(document.getElementById("exampleModal"));
 
-      myModal.show();
-    }
-  }
-});
+  myModal.show();
+}
 
 formTask.submit(function (e) {
   e.preventDefault();
@@ -100,7 +100,6 @@ function saveTask(element) {
 
 function editTask(element) {
   const div_task = $(element).closest(".row");
-  const id = div_task.attr("data-id");
   div_task.html(`
       <div class='col-6 col-sm-8 col-md-9'>
         <input placeholder="editar tarea" type="text" class="form-control"/>
@@ -134,13 +133,28 @@ function showTask(id) {
   // .fadeOut(5000);
 }
 
+function doneTask(element, id) {
+  updateTask(id, "status", "done");
+  const container = $(element).closest(".row");
+
+  container.addClass("bg-success bg-opacity-50 rounded text-white fst-italic");
+}
+
 function createInputTask(id, text, status) {
-  $("<div class='row my-2' data-id='" + id + "'>")
+  $(
+    `<div class='row py-2 my-2 ${
+      status === "done"
+        ? "bg-success bg-opacity-50 rounded text-white fst-italic"
+        : ""
+    }'  data-id='${id}'>`
+  )
     .html(
       `
       <div class='col-6 col-sm-8 col-md-9'>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="check_${id}">
+          <input ${
+            status === "done" ? "disabled" : ""
+          } class="form-check-input" type="checkbox" onchange="doneTask(this, ${id})" id="check_${id}">
           <label class="form-check-label ${status}" for="check_${id}">
             ${text}
           </label>
