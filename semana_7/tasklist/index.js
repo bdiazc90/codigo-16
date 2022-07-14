@@ -1,6 +1,7 @@
 const inputTask = $("#input-task");
 const btnTask = $("#btn-task");
 const formTask = $("#form-task");
+const form = document.querySelector("#form-task");
 const sectionTask = $("#section-task");
 
 $(function () {
@@ -13,14 +14,23 @@ $(function () {
 });
 
 formTask.submit(function (e) {
-  e.preventDefault()
-  const text = inputTask.val();
+  e.preventDefault();
+  inputTask.focus();
+  //! checkValidity analiza los inputs y si tienen required y estan vacios
+  //! esta funcion retorna false caso contrario esten lleno
+  //* retorna true
+  if (!form.checkValidity()) {
+    // agregamos la clase was-validated al formulario
+    // esto al ser agregado buscara los invalid-feedback y los mostrara
+    form.classList.add("was-validated");
+    return;
+  }
 
+  const text = inputTask.val();
   const task = storeTask(text);
   // console.log("Task", task);
 
   inputTask.val("");
-  inputTask.focus();
 
   createInputTask(task.id, task.text, task.status);
 });
