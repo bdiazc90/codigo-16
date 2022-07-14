@@ -117,7 +117,7 @@ function showTask(id) {
   sectionDetailTask.append(
     `
     <div class="card" style="width: 300px; padding: 0;">
-      <img src="https://source.unsplash.com/user/erondu/300x200" class="card-img-top" />
+      <img src="https://source.unsplash.com/user/erondu/300x200?x=${new Date()}" class="card-img-top" />
       <div class="card-body">
         <div class="card-title">${task.text}</div>
         <div class="card-text">
