@@ -19,7 +19,20 @@ $(function () {
 
     if (filter) {
       const filterTask = arrayTask.filter((task) => task.status === filter);
-      console.log(filterTask);
+
+      const tbody = $("#tbody");
+
+      filterTask.forEach((task) => {
+        tbody.append(
+          `<tr>
+            <td>${task.id}</td>
+            <td>${task.text}</td>
+            <td>${task.status}</td>
+            <td>${task.created_at}</td>
+          </tr>
+          `
+        );
+      });
 
       const myModal = new bootstrap.Modal(
         document.getElementById("exampleModal")
