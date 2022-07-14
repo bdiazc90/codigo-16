@@ -153,7 +153,7 @@ function createInputTask(id, text, status) {
       <div class='col-6 col-sm-8 col-md-9'>
         <div class="form-check">
           <input ${
-            status === "done" ? "disabled" : ""
+            status === "done" ? "disabled checked" : ""
           } class="form-check-input" type="checkbox" onchange="doneTask(this, ${id})" id="check_${id}">
           <label class="form-check-label ${status}" for="check_${id}">
             ${text}
