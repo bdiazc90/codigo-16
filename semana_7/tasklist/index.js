@@ -29,7 +29,7 @@ $(function () {
 				case "done":
 					$("#filter_done").addClass("active");
 					break;
-				case "done":
+				case "delete":
 					$("#filter_delete").addClass("active");
 					break;
 				default:
@@ -37,6 +37,15 @@ $(function () {
 					break;
 			}
 		}
+	}
+
+	if (sectionTask.html() == "") {
+		new Noty({
+			theme: "relax",
+			type: "info",
+			layout: "center",
+			text: "No hay nada",
+		}).show();
 	}
 });
 
@@ -98,6 +107,14 @@ function deleteTask(element) {
 	const id = div_task.data("id");
 	const task = updateTask(id, "status", "delete");
 	div_task.replaceWith(task.toHtml());
+
+	new Noty({
+		theme: "relax",
+		type: "error",
+		layout: "topCenter",
+		text: "Tarea borrada",
+		timeout: 3000,
+	}).show();
 }
 
 function saveTask(element) {
@@ -106,6 +123,7 @@ function saveTask(element) {
 	const newText = div_task.find("input").val();
 	const task = updateTask(id, "text", newText);
 	div_task.replaceWith(task.toHtml());
+	Swal.fire("Tarea actualizada", `[ ${newText} ]`, "success");
 }
 
 function editTask(element) {
@@ -159,4 +177,28 @@ function doneTask(element, id) {
 function addTaskToSection(task) {
 	const div_task = task.toHtml();
 	div_task.appendTo(sectionTask).hide().fadeIn(1000);
+}
+
+function resetStorage() {
+	Swal.fire({
+		title: "Estás seguro?",
+		text: "(estas a punto de borrar el localStorage...)",
+		icon: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#3085d6",
+		cancelButtonColor: "#d33",
+		confirmButtonText: "Si, borrar!",
+	}).then((result) => {
+		if (result.isConfirmed) {
+			localStorage.setItem("tasks", "");
+			Swal.fire(
+				"localStorage se borró!",
+				"Todas las tareas se han eliminado",
+				"success"
+			);
+			setTimeout(() => {
+				window.location.reload();
+			}, 1000);
+		}
+	});
 }

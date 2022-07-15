@@ -1,4 +1,8 @@
-let arrayTask = JSON.parse(localStorage.getItem("tasks")) || [];
+let arrayTask = [];
+
+if (localStorage.getItem("tasks")) {
+	arrayTask = JSON.parse(localStorage.getItem("tasks"));
+}
 
 // Aquí felizmente vamos a recrear la function toHtml() para cada task:
 // arrayTask solo tiene task con prop (NO TIENEN FUNCIONES).
@@ -45,9 +49,9 @@ function taskToHtml(task) {
     </div>
   </div>
   <div class='col-6 col-sm-4 col-md-3'>
-    <button class='btn btn-light' onclick="editTask(this)">✏️</button>
-    <button class='btn btn-light' onclick="showTask(${task.id})">👁</button>
-    <button class='btn btn-dark' onclick="deleteTask(this)">❌</button>
+    <button class='btn btn-dark' role="edit" onclick="editTask(this)"><i class="fa-solid fa-pencil text-warning"></i></button>
+    <button class='btn btn-dark' role="show" onclick="showTask(${task.id})"><i class="fa-solid fa-eye"></i></button>
+    <button class='btn btn-dark' role="delete" onclick="deleteTask(this)"><i class="fa-solid fa-trash-can text-danger"></i></button>
   </div>
   `);
 	if (task.status == "done") {
@@ -58,10 +62,13 @@ function taskToHtml(task) {
 		div_task.addClass(
 			"bg-info bg-opacity-75 rounded text-white fst-italic"
 		);
-		div_task.find("button").hide();
+		div_task.find("button").each(function () {
+			if ($(this).attr("role") == "show") return;
+			$(this).hide();
+		});
 	} else if (task.status == "delete") {
 		div_task.find("input[type='checkbox'").prop("disabled", true);
-		div_task.addClass("bg-warning bg-opacity-50 rounded text-white");
+		div_task.addClass("bg-danger bg-opacity-50 rounded text-white");
 		div_task.find("label").addClass("text-decoration-line-through");
 		div_task.find("button").hide();
 	}
