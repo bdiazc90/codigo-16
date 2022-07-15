@@ -63,12 +63,12 @@
 							<a
 								class="nav-link active"
 								aria-current="page"
-								href="#"
+								href="?filter="
 								>Home</a
 							>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Link</a>
+							<a class="nav-link" href="#">Reiniciar</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a
@@ -86,12 +86,24 @@
 								aria-labelledby="navbarDropdown"
 							>
 								<li>
-									<a class="dropdown-item" href="?filter=todo"
+									<a
+										id="filter_todo"
+										class="dropdown-item"
+										href="?filter=todo"
 										>TODO</a
 									>
 								</li>
 								<li>
 									<a
+										id="filter_done"
+										class="dropdown-item"
+										href="?filter=done"
+										>DONE</a
+									>
+								</li>
+								<li>
+									<a
+										id="filter_delete"
 										class="dropdown-item"
 										href="?filter=delete"
 										>DELETE</a
@@ -99,8 +111,11 @@
 								</li>
 								<li><hr class="dropdown-divider" /></li>
 								<li>
-									<a class="dropdown-item" href="?filter=done"
-										>DONE</a
+									<a
+										id="filter_all"
+										class="dropdown-item"
+										href="?filter=all"
+										>ALL</a
 									>
 								</li>
 							</ul>

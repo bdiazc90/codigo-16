@@ -9,7 +9,7 @@ arrayTask = arrayTask.map((task) => {
 		status: task.status,
 		created_at: new Date(task.created_at),
 		toHtml: function () {
-			return toHtml(this);
+			return taskToHtml(this);
 		},
 	};
 });
@@ -22,7 +22,7 @@ function storeTask(text) {
 		status: "todo",
 		created_at: new Date(),
 		toHtml: function () {
-			return toHtml(this);
+			return taskToHtml(this);
 		},
 	};
 
@@ -31,7 +31,7 @@ function storeTask(text) {
 	return task;
 }
 
-function toHtml(task) {
+function taskToHtml(task) {
 	const div_task = $("<div>", {
 		class: "row my-2 py-2",
 		"data-id": task.id,
@@ -56,12 +56,12 @@ function toHtml(task) {
 			.prop("disabled", true)
 			.prop("checked", true);
 		div_task.addClass(
-			"bg-success bg-opacity-50 rounded text-white fst-italic"
+			"bg-info bg-opacity-75 rounded text-white fst-italic"
 		);
 		div_task.find("button").hide();
 	} else if (task.status == "delete") {
 		div_task.find("input[type='checkbox'").prop("disabled", true);
-		div_task.addClass("bg-danger bg-opacity-50 rounded text-white");
+		div_task.addClass("bg-warning bg-opacity-50 rounded text-white");
 		div_task.find("label").addClass("text-decoration-line-through");
 		div_task.find("button").hide();
 	}

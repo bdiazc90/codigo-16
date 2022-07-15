@@ -11,13 +11,31 @@ $(function () {
 	const filter = queryString.get("filter"); // todo || done || delete
 
 	if (arrayTask.length > 0) {
-		// aca iteremos el array y pintemos las tareas
 		arrayTask.forEach((task) => {
-			addTaskToSection(task);
+			if (filter) {
+				if (task.status == filter || filter == "all") {
+					addTaskToSection(task);
+				}
+			} else {
+				addTaskToSection(task);
+			}
 		});
 
 		if (filter) {
-			showFilteredModalTask(filter);
+			switch (filter) {
+				case "todo":
+					$("#filter_todo").addClass("active");
+					break;
+				case "done":
+					$("#filter_done").addClass("active");
+					break;
+				case "done":
+					$("#filter_delete").addClass("active");
+					break;
+				default:
+					$("#filter_all").addClass("active");
+					break;
+			}
 		}
 	}
 });
