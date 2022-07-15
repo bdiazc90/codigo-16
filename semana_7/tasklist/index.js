@@ -66,6 +66,13 @@ formTask.submit(function (e) {
 	inputTask.val("");
 
 	addTaskToSection(task);
+	new Noty({
+		theme: "relax",
+		type: "success",
+		layout: "topCenter",
+		text: "Nueva tarea agregada!",
+		timeout: 3000,
+	}).show();
 });
 
 function deleteTask(element) {
