@@ -45,6 +45,7 @@ $(function () {
 			type: "info",
 			layout: "center",
 			text: "No hay nada",
+			timeout: 3000,
 		}).show();
 	}
 });
@@ -133,8 +134,8 @@ function editTask(element) {
         <input placeholder="editar tarea" type="text" class="form-control"/>
       </div>
       <div class='col-6 col-sm-4 col-md-3'>
-        <button class="btn btn-dark" onclick="saveTask(this)">✅</button>
-        <button class="btn btn-dark" onclick="resetTask(this)">↩️</button>
+        <button class="btn btn-dark" onclick="saveTask(this)"><i class="fa-solid fa-floppy-disk"></i></button>
+        <button class="btn btn-dark" onclick="resetTask(this)"><i class="fa-solid fa-xmark"></i></button>
       </div>
   `);
 }
@@ -160,7 +161,7 @@ function showTask(id) {
         ${task.status}
         </div>
          <div class="card-text">
-        ${task.created_at}
+        ${task.created_at.toLocaleString()}
         </div>
       </div>
     </div>
@@ -190,7 +191,7 @@ function resetStorage() {
 		confirmButtonText: "Si, borrar!",
 	}).then((result) => {
 		if (result.isConfirmed) {
-			localStorage.setItem("tasks", "");
+			localStorage.removeItem("tasks");
 			Swal.fire(
 				"localStorage se borró!",
 				"Todas las tareas se han eliminado",

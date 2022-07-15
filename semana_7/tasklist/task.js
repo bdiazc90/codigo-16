@@ -1,8 +1,4 @@
-let arrayTask = [];
-
-if (localStorage.getItem("tasks")) {
-	arrayTask = JSON.parse(localStorage.getItem("tasks"));
-}
+let arrayTask = JSON.parse(localStorage.getItem("tasks")) || [];
 
 // Aquí felizmente vamos a recrear la function toHtml() para cada task:
 // arrayTask solo tiene task con prop (NO TIENEN FUNCIONES).
@@ -60,7 +56,7 @@ function taskToHtml(task) {
 			.prop("disabled", true)
 			.prop("checked", true);
 		div_task.addClass(
-			"bg-info bg-opacity-75 rounded text-white fst-italic"
+			"bg-success bg-opacity-75 rounded text-white fst-italic"
 		);
 		div_task.find("button").each(function () {
 			if ($(this).attr("role") == "show") return;
