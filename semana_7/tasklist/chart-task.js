@@ -28,28 +28,41 @@
 //   },
 // });
 
+const selectChart = document.querySelector("#select-chart");
+
 const chartTaskReport = document
   .querySelector("#task-chart-report")
   .getContext("2d");
 
-const myChart = new Chart(chartTaskReport, {
-  type: "doughnut",
-  data: {
-    labels: ["TODO", "DONE", "DELETE"],
-    datasets: [
-      {
-        // data: [10, 11, 12] // data[0] = 10 data[1] = 11 data[2] = 12
-        label: "Estados de tareas",
-        backgroundColor: ["#25A9FF", "#00C45F", "#FF6674"],
-      },
-    ],
-  },
-});
+let myChart = generateChart();
 
-function generateChart() {
+selectChart.onchange = (event) => {
+  myChart.destroy();
+  myChart = generateChart(event.target.value);
+  updateCalcChart();
+};
+
+function generateChart(type = "doughnut") {
+  return new Chart(chartTaskReport, {
+    type,
+    data: {
+      labels: ["TODO", "DONE", "DELETE"],
+      datasets: [
+        {
+          // data: [10, 11, 12] // data[0] = 10 data[1] = 11 data[2] = 12
+          label: "Estados de tareas",
+          backgroundColor: ["#25A9FF", "#00C45F", "#FF6674"],
+        },
+      ],
+    },
+  });
+}
+
+function updateCalcChart() {
   const countTODO = getCountTask("todo");
   const countDONE = getCountTask("done");
   const countDelete = getCountTask("delete");
+
   myChart.data.datasets[0].data[0] = countTODO;
   // {
   //   data: [countTODO]
@@ -71,6 +84,7 @@ function generateChart() {
   myChart.update();
 }
 
+// esta funcion filtra por el estado y retorna la cantidad de elementos encontrados
 function getCountTask(status) {
   const tasks = arrayTask.filter((task) => task.status === status);
   return tasks.length;

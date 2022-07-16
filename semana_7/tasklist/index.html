@@ -130,8 +130,8 @@
         </div>
       </div>
     </nav>
-    <main>
-      <div class="container mt-5">
+    <main class="row">
+      <div class="container mt-5 col-md-7">
         <h1>Task List</h1>
         <form id="form-task" class="row my-3 needs-validation" novalidate>
           <div class="col-6 col-sm-8 col-md-9 col-lg-10">
@@ -157,14 +157,21 @@
           id="section-detail-task"
           class="row d-flex justify-content-center"
         ></section>
-        <!-- Seccion de graficos -->
-        <section id="section-charts" class="row">
-          <!-- <canvas id="bar-chart" width="400" height="200"></canvas> -->
-          <div class="col-md-6">
-            <canvas id="task-chart-report"></canvas>
-          </div>
-        </section>
       </div>
+      <!-- Seccion de graficos -->
+      <section id="section-charts" class="col-md-4 mt-5">
+        <!-- <canvas id="bar-chart" width="400" height="200"></canvas> -->
+        <select name="select-chart" id="select-chart" class="form-select">
+          <option value="" selected disabled>Selecione un grafico</option>
+          <option value="pie">Pie</option>
+          <option value="doughnut">Doughnut</option>
+          <option value="bar">Bar</option>
+          <option value="line">Line</option>
+        </select>
+        <div class="mt-5">
+          <canvas id="task-chart-report"></canvas>
+        </div>
+      </section>
     </main>
     <!-- section del modal -->
     <!-- <button

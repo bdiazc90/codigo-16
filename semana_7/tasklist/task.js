@@ -67,7 +67,7 @@ function taskToHtml(task) {
     div_task.find("button").hide();
   }
 
-  generateChart();
+  updateCalcChart();
   return div_task;
 }
 
