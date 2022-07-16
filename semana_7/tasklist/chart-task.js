@@ -34,14 +34,6 @@ const chartTaskReport = document
   .querySelector("#task-chart-report")
   .getContext("2d");
 
-let myChart = generateChart();
-
-selectChart.onchange = (event) => {
-  myChart.destroy();
-  myChart = generateChart(event.target.value);
-  updateCalcChart();
-};
-
 function generateChart(type = "doughnut") {
   return new Chart(chartTaskReport, {
     type,
@@ -57,6 +49,14 @@ function generateChart(type = "doughnut") {
     },
   });
 }
+
+let myChart = generateChart();
+
+selectChart.onchange = (event) => {
+  myChart.destroy();
+  myChart = generateChart(event.target.value);
+  updateCalcChart();
+};
 
 function updateCalcChart() {
   const countTODO = getCountTask("todo");
@@ -89,3 +89,19 @@ function getCountTask(status) {
   const tasks = arrayTask.filter((task) => task.status === status);
   return tasks.length;
 }
+
+const btnExportChart = document.querySelector("#btn-export-chart");
+const btnDownloadChart = document.querySelector("#btn-download-chart");
+
+btnExportChart.onclick = () => {
+  const base64URL = myChart.toBase64Image("image/jpeg", 1);
+  // opcion1
+  // btnDownloadChart.href = base64URL;
+  // opcion2
+  const a = document.createElement("a");
+  a.href = base64URL;
+  a.download = `chart-${new Date().toLocaleDateString()}`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+};
