@@ -37,6 +37,8 @@ $(function () {
           break;
       }
     }
+
+    // generateChart();
   }
 
   if (sectionTask.html() == "") {
