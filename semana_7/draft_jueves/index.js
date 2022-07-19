@@ -5,53 +5,20 @@ const sectionTask = $("#section-task");
 const sectionDetailTask = $("#section-detail-task");
 const form = document.querySelector("#form-task");
 
-// console.log(formTask.get(0));
-// console.log($(form));
-
 $(function () {
 	// vamos a obtener el queryString de la url
 	const queryString = new URLSearchParams(window.location.search);
 	const filter = queryString.get("filter"); // todo || done || delete
 
 	if (arrayTask.length > 0) {
+		// aca iteremos el array y pintemos las tareas
 		arrayTask.forEach((task) => {
-			if (filter) {
-				if (task.status == filter || filter == "all") {
-					addTaskToSection(task);
-				}
-			} else {
-				addTaskToSection(task);
-			}
+			createInputTask(task);
 		});
 
 		if (filter) {
-			switch (filter) {
-				case "todo":
-					$("#filter_todo").addClass("active");
-					break;
-				case "done":
-					$("#filter_done").addClass("active");
-					break;
-				case "delete":
-					$("#filter_delete").addClass("active");
-					break;
-				default:
-					$("#filter_all").addClass("active");
-					break;
-			}
+			showFilteredModalTask(filter);
 		}
-
-		// updateCalcChart();
-	}
-
-	if (sectionTask.html() == "") {
-		new Noty({
-			theme: "relax",
-			type: "info",
-			layout: "center",
-			text: "No hay nada",
-			timeout: 3000,
-		}).show();
 	}
 });
 
@@ -98,14 +65,14 @@ formTask.submit(function (e) {
 
 	inputTask.val("");
 
-	addTaskToSection(task);
-	new Noty({
-		theme: "relax",
-		type: "success",
-		layout: "topCenter",
-		text: "Nueva tarea agregada!",
-		timeout: 3000,
-	}).show();
+	createInputTask(task);
+	// new Noty({
+	// 	theme: "relax",
+	// 	text: "Tarea creada!",
+	// 	type: "success",
+	// 	layout: "topCenter",
+	// }).show();
+	Swal.fire("Tarea creada!", `[${text}]`, "success");
 });
 
 function deleteTask(element) {
@@ -113,14 +80,6 @@ function deleteTask(element) {
 	const id = div_task.data("id");
 	const task = updateTask(id, "status", "delete");
 	div_task.replaceWith(task.toHtml());
-
-	new Noty({
-		theme: "relax",
-		type: "error",
-		layout: "topCenter",
-		text: "Tarea borrada",
-		timeout: 3000,
-	}).show();
 }
 
 function saveTask(element) {
@@ -129,7 +88,13 @@ function saveTask(element) {
 	const newText = div_task.find("input").val();
 	const task = updateTask(id, "text", newText);
 	div_task.replaceWith(task.toHtml());
-	Swal.fire("Tarea actualizada", `[ ${newText} ]`, "success");
+	new Noty({
+		theme: "relax",
+		text: "Tarea actualizada!",
+		type: "warning",
+		layout: "topCenter",
+		timeout: 2000,
+	}).show();
 }
 
 function editTask(element) {
@@ -139,17 +104,9 @@ function editTask(element) {
         <input placeholder="editar tarea" type="text" class="form-control"/>
       </div>
       <div class='col-6 col-sm-4 col-md-3'>
-        <button class="btn btn-dark" onclick="saveTask(this)"><i class="fa-solid fa-floppy-disk"></i></button>
-        <button class="btn btn-dark" onclick="resetTask(this)"><i class="fa-solid fa-xmark"></i></button>
+        <button class="btn btn-dark" onclick="saveTask(this)">✅</button>
       </div>
   `);
-}
-
-function resetTask(element) {
-	const div_task = $(element).closest(".row");
-	const id = div_task.data("id");
-	const task = arrayTask.find((task) => task.id === id);
-	div_task.replaceWith(task.toHtml());
 }
 
 function showTask(id) {
@@ -159,52 +116,29 @@ function showTask(id) {
 	sectionDetailTask.append(
 		`
     <div class="card" style="width: 300px; padding: 0;">
-      <img src="https://source.unsplash.com/user/erondu/300x200?v=${Math.random()}" class="card-img-top" />
+      <img src="https://source.unsplash.com/user/erondu/300x200" class="card-img-top" />
       <div class="card-body">
         <div class="card-title">${task.text}</div>
         <div class="card-text">
         ${task.status}
         </div>
          <div class="card-text">
-        ${task.created_at.toLocaleString()}
+        ${task.created_at}
         </div>
       </div>
     </div>
     `
 	);
+	// .fadeOut(5000);
 }
 
 function doneTask(element, id) {
 	const task = updateTask(id, "status", "done");
-	const div_task = $(element).closest(".row");
-	div_task.replaceWith(task.toHtml());
+	const container = $(element).closest(".row");
+	container.replaceWith(task.toHtml());
 }
 
-function addTaskToSection(task) {
+function createInputTask(task) {
 	const div_task = task.toHtml();
 	div_task.appendTo(sectionTask).hide().fadeIn(1000);
-}
-
-function resetStorage() {
-	Swal.fire({
-		title: "Estás seguro?",
-		text: "(estas a punto de borrar el localStorage...)",
-		icon: "warning",
-		showCancelButton: true,
-		confirmButtonColor: "#3085d6",
-		cancelButtonColor: "#d33",
-		confirmButtonText: "Si, borrar!",
-	}).then((result) => {
-		if (result.isConfirmed) {
-			localStorage.removeItem("tasks");
-			Swal.fire(
-				"localStorage se borró!",
-				"Todas las tareas se han eliminado",
-				"success"
-			);
-			setTimeout(() => {
-				window.location.reload();
-			}, 1000);
-		}
-	});
 }
