@@ -3,13 +3,13 @@ const containerMovies = document.querySelector("#container-movies");
 function renderCards(movies) {
   containerMovies.innerHTML = "";
   movies.forEach((movie) => {
-    
     containerMovies.innerHTML += `
-        <div class="col-12 col-sm-4 col-md-3 col-lg-3">
+        <div class="col">
           <div class="card my-3" >
             <img
               src="${movie.images["Poster Art"].url}"
               class="card-img-top"
+              onerror="this.onerror=null;this.src='https://i.quotev.com/img/q/u/15/12/25/78a31e5f80-imag.jpg';"
               alt=""
             />
             <div class="card-body">
