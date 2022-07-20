@@ -1,40 +1,51 @@
 const containerMovies = document.querySelector("#container-movies");
 
 function renderCards(movies) {
-  containerMovies.innerHTML = "";
-  movies.forEach((movie) => {
-    containerMovies.innerHTML += `
+	containerMovies.innerHTML = "";
+	movies.forEach((movie) => {
+		const { title: titulo, programType: tipo, images: imagenes } = movie;
+		containerMovies.innerHTML += `
         <div class="col">
           <div class="card my-3">
             <div class="into-photo">
               <span class="badge text-bg-${
-                movie.programType === "series" ? "success" : "warning"
-                  }">${movie.programType}</span>
+					tipo === "series" ? "success" : "warning"
+				}">${tipo}</span>
               <img
-                src="${movie.images["Poster Art"].url}"
+                src="${imagenes["Poster Art"].url}"
                 class="card-img-top"
                 onerror="this.onerror=null;this.src='https://i.quotev.com/img/q/u/15/12/25/78a31e5f80-imag.jpg';"
                 alt=""
               />
             </div>
             <div class="card-body">
-              <div class="card-title">${movie.title}</div>
-              <p class="card-text">
-               ${movie.description}
-              </p>
+              <div class="card-title">${titulo}</div>
             </div>
           </div>
         </div>
     `;
-  });
+	});
 }
 
 const url =
-  "https://static.rviewer.io/challenges/datasets/dreadful-tomatoes/data.json";
+	"https://static.rviewer.io/challenges/datasets/dreadful-tomatoes/data.json";
 
 fetch(url)
-  .then((respuestita) => respuestita.json())
-  .then((datos) => renderCards(datos.entries));
+	.then((response) => response.json())
+	// .then((obj_peliculas) => console.log(obj_peliculas));
+	.then((obj_peliculas) => renderCards(obj_peliculas.entries));
+
+// async function getJson() {
+// 	const response = await fetch(url);
+// 	const { entries } = await response.json();
+// 	renderCards(entries);
+// }
+
+// getJson();
+
+// (async () => {
+// 	renderCards((await (await fetch(url)).json()).entries);
+// })();
 
 // console.log(peticion);
 // recordemos que fetch retorna una promesa esta tiene 2 escenario
@@ -44,8 +55,8 @@ fetch(url)
 //* then() Es un callback, es una funcion que se ejecuta cuando algo terminar
 
 // Ejemplo con el API de pokemon
-const urlPokemon = "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0";
+// const urlPokemon = "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0";
 
-fetch(urlPokemon)
-  .then((response) => response.json())
-  .then((data) => console.log(data));
+// fetch(urlPokemon)
+// 	.then((response) => response.json())
+// 	.then((data) => console.log(data));
