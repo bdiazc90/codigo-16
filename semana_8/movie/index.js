@@ -1,9 +1,52 @@
 const containerMovies = document.querySelector("#container-movies");
 
+// Ejemplo de try catch:
+function saludar() {
+	let mensaje = "Hola a todos";
+	// funcNoExiste();
+	try {
+		mensaje = "Hola germania";
+		funcNoExiste();
+		mensaje = "Hola arturo";
+	} catch (e) {
+		console.log(e);
+	}
+	return mensaje;
+}
+console.log(saludar());
+
 function renderCards(movies) {
-	containerMovies.innerHTML = "";
+	containerMovies.innerHTML += "";
 	movies.forEach((movie) => {
 		const { title: titulo, programType: tipo, images: imagenes } = movie;
+		let image_url = imagenes["Poster Art"].url;
+		console.log(image_url);
+
+		// try {
+		// 	fetch(image_url, { method: "HEAD" })
+		// 		.then((res) => {
+		// 			console.log(res.status);
+		// 		})
+		// 		.catch(function (e) {
+		// 			image_url =
+		// 				"https://i.quotev.com/img/q/u/15/12/25/78a31e5f80-imag.jpg";
+		// 			console.log(e);
+		// 		});
+		// } catch (error) {
+		// 	console.log(error);
+		// 	image_url =
+		// 		"https://i.quotev.com/img/q/u/15/12/25/78a31e5f80-imag.jpg";
+		// }
+
+		// try {
+		// 	const http = new XMLHttpRequest();
+		// 	http.open("HEAD", image_url, false);
+		// 	http.send();
+		// } catch (error) {
+		// 	image_url =
+		// 		"https://i.quotev.com/img/q/u/15/12/25/78a31e5f80-imag.jpg";
+		// }
+
 		containerMovies.innerHTML += `
         <div class="col">
           <div class="card my-3">
@@ -12,9 +55,8 @@ function renderCards(movies) {
 					tipo === "series" ? "success" : "warning"
 				}">${tipo}</span>
               <img
-                src="${imagenes["Poster Art"].url}"
+                src="${image_url}"
                 class="card-img-top"
-                onerror="this.onerror=null;this.src='https://i.quotev.com/img/q/u/15/12/25/78a31e5f80-imag.jpg';"
                 alt=""
               />
             </div>
@@ -35,7 +77,7 @@ function sortMovies(movies) {
 	// 	movies.map((movie) => movie.title)
 	// );
 	// return movies;
-	return movies.sort(() => 0.5 - Math.random()).slice(0, 10);
+	return movies.sort(() => 0.5 - Math.random()).slice(0, 2);
 }
 
 const url =
@@ -46,13 +88,21 @@ fetch(url)
 	.then((movies) => sortMovies(movies.entries))
 	.then((movies_random) => renderCards(movies_random));
 
-// async function getJson() {
-// 	const response = await fetch(url);
-// 	const { entries } = await response.json();
-// 	renderCards(entries);
-// }
+async function getJson() {
+	const response = await fetch(url);
+	const movies = await response.json();
+	const movies_random = sortMovies(movies.entries);
+	renderCards(movies_random);
+}
+getJson();
 
-// getJson();
+function fetchJson() {
+	fetch(url)
+		.then((response) => response.json()) // espero que el response se convierta a una collection
+		.then((movies) => sortMovies(movies.entries))
+		.then((movies_random) => renderCards(movies_random));
+}
+fetchJson();
 
 // (async () => {
 // 	renderCards((await (await fetch(url)).json()).entries);
