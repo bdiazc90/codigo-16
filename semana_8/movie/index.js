@@ -27,13 +27,24 @@ function renderCards(movies) {
 	});
 }
 
+let currentMovies_Title = [];
+
+function sortMovies(movies) {
+	// movies = movies.sort(() => 0.5 - Math.random()).slice(0, 10);
+	// currentMovies_Title = currentMovies_Title.concat(
+	// 	movies.map((movie) => movie.title)
+	// );
+	// return movies;
+	return movies.sort(() => 0.5 - Math.random()).slice(0, 10);
+}
+
 const url =
 	"https://static.rviewer.io/challenges/datasets/dreadful-tomatoes/data.json";
 
 fetch(url)
-	.then((response) => response.json())
-	// .then((obj_peliculas) => console.log(obj_peliculas));
-	.then((obj_peliculas) => renderCards(obj_peliculas.entries));
+	.then((response) => response.json()) // espero que el response se convierta a una collection
+	.then((movies) => sortMovies(movies.entries))
+	.then((movies_random) => renderCards(movies_random));
 
 // async function getJson() {
 // 	const response = await fetch(url);
