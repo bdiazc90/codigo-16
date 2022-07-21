@@ -11,7 +11,7 @@ import { urlMovies, mockAPIUrl } from "./config.js";
  * Funcion que retorna las 100 peliculas
  */
 
-const getMovies = async () => {
+export const getMovies = async () => {
   try {
     const response = await fetch(urlMovies);
     // tiene 2 key
