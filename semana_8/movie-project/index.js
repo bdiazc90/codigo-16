@@ -26,7 +26,7 @@ function renderMovie(movie) {
   // va a contar la cantidad elmentos renderizado en nuestro html
   const movies = document.querySelectorAll("#container-movies .col");
 
-  if (movies.length === 20) return;
+  if (movies.length >= 20) return;
 
   containerMovies.innerHTML += `
     <div class="col">
