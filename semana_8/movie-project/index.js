@@ -12,13 +12,9 @@ btnGetMovies.onclick = async function () {
   movies
     .sort(() => 0.5 - Math.random())
     .forEach(async (movie) => {
-      // dentro del forEach no se hereda el async por ender hay que hacer
-      // que el forEach se async
       const imageUrl = movie.images["Poster Art"].url;
 
       const response = await fetch(imageUrl);
-      // sepamos que si una peticion falla el response.ok sera false
-      /// si no sera resposne.ok seta true
       if (response.ok) {
         // Si la peticion de la imagen esta ok vamos a renderizar la pelicula
         renderMovie(movie);
