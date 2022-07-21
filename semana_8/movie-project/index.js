@@ -2,7 +2,10 @@
 import { getMovies } from "./service/index.js";
 
 const btnGetMovies = document.querySelector("#btn-get-movies");
+const btnSaveApi = document.querySelector("#btn-save-api");
 const containerMovies = document.querySelector("#container-movies");
+
+const moviesWithImage = [];
 
 btnGetMovies.onclick = async function () {
   const movies = await getMovies();
@@ -22,11 +25,17 @@ btnGetMovies.onclick = async function () {
     });
 };
 
+btnSaveApi.onclick = function () {
+  console.log(moviesWithImage);
+};
+
 function renderMovie(movie) {
   // va a contar la cantidad elmentos renderizado en nuestro html
   const movies = document.querySelectorAll("#container-movies .col");
 
   if (movies.length >= 20) return;
+
+  moviesWithImage.push(movie);
 
   containerMovies.innerHTML += `
     <div class="col">
