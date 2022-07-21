@@ -26,3 +26,31 @@ export const getMovies = async () => {
     return error;
   }
 };
+
+/**
+ * Esta funcion va a acrear una pelicula en mockapi
+ * recordemos que como es para crear usaremos POST
+ */
+export const storeMovieMockApi = async (movie) => {
+  try {
+    // Este objeto sera el que enviemos a mockApi
+    const object = {
+      title: movie.title,
+      programType: movie.programType,
+      releaseYear: movie.releaseYear,
+      imageUrl: movie.images["Poster Art"].url,
+    };
+
+    const response = await fetch(mockAPIUrl, {
+      method: "POST",
+      body: JSON.stringify(object),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
