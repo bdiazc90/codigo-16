@@ -1,8 +1,15 @@
 // La logica del DOM
-import { getMovies, storeMovieMockApi } from "./service/index.js";
+import {
+  getMovies,
+  getMoviesFromMockApi,
+  storeMovieMockApi,
+} from "./service/index.js";
 
 const btnGetMovies = document.querySelector("#btn-get-movies");
 const btnSaveApi = document.querySelector("#btn-save-api");
+const btnGetMoviesFromMockApi = document.querySelector(
+  "#btn-get-movies-mock-api"
+);
 const containerMovies = document.querySelector("#container-movies");
 
 const moviesWithImage = [];
@@ -30,6 +37,11 @@ btnSaveApi.onclick = function () {
   moviesWithImage.forEach(async (movie) => {
     await storeMovieMockApi(movie);
   });
+};
+
+btnGetMoviesFromMockApi.onclick = async function () {
+  const movies = await getMoviesFromMockApi();
+  console.log(movies);
 };
 
 function renderMovie(movie) {
