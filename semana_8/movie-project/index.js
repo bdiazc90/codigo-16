@@ -14,6 +14,8 @@ const containerMovies = document.querySelector("#container-movies");
 
 const input_cantidad = document.getElementById("cant_movies");
 
+const div_table = document.getElementById("div_table");
+
 input_cantidad.addEventListener("keydown", (e) => {
 	const valid_codes = [
 		"Backspace",
@@ -83,6 +85,19 @@ btnGetMoviesFromMockApi.onclick = async function () {
 	const movies = await getMoviesFromMockApi();
 	// console.log(movies);
 	// Imprimir una table debajo de los cards, con TODO lo que viene de Mockapi:
+	div_table.querySelector("span").innerText = movies.length;
+	const tbody = div_table.querySelector("tbody");
+	movies.forEach((movie) => {
+		const tr = document.createElement("tr");
+		tr.innerHTML = `
+      <th scope="row">${movie.id}</th>
+      <td>${movie.title}</td>
+      <td>${movie.programType}</td>
+      <td>${movie.releaseYear}</td>
+    `;
+		tbody.appendChild(tr);
+	});
+	div_table.classList.remove("visually-hidden");
 };
 
 function renderMovie(movie) {
