@@ -81,7 +81,8 @@ btnSaveApi.onclick = function () {
 
 btnGetMoviesFromMockApi.onclick = async function () {
 	const movies = await getMoviesFromMockApi();
-	console.log(movies);
+	// console.log(movies);
+	// Imprimir una table debajo de los cards, con TODO lo que viene de Mockapi:
 };
 
 function renderMovie(movie) {

@@ -26,11 +26,45 @@
             <button class="btn btn-success" id="btn-save-api" disabled>Guardar en mock api</button>
           </div>
           <div class="col-4 d-grid">
-            <button id="btn-get-movies-mock-api" class="btn btn-warning" disabled>Traer peliculas de mockapi</button>
+            <button id="btn-get-movies-mock-api" class="btn btn-warning">Traer peliculas de mockapi</button>
           </div>
         </div>
       </section>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4" id="container-movies"></div>
+      <!-- Table from MockApi -->
+      <div class="table-responsive" id="div_table">
+        <table class="table caption-top">
+          <caption>MockApi Data: <span>5</span></caption>
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">title</th>
+              <th scope="col">programType</th>
+              <th scope="col">year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </body>
   <script
