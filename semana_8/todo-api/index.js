@@ -3,19 +3,24 @@ import express from "express";
 
 const app = express();
 
-// Esto esta creando la ruta en la raiz y luego vamos a recibir 2
-//* request (recibimos) => Es la informacion que vamos recibir de quien haga la peticion
-//* response (respondemos) => Es lo que vamos a responder al usuario
+// vamos a crear un arreglo que contega las tareas
+const todoListArray = [];
+
 app.get("/", (request, response) => {
-  // vamos a responder que cuando el usuario entre a la raiz esta respuesta
-  // sea un json
+  /**
+   * total: 100
+   * tasks: []
+   */
   response.json({
-    message: "Hola mundo",
+    total: todoListArray.length,
+    tasks: todoListArray,
   });
 });
 
-// Para poder ver esto desde un navegador vamos a habilitar un puerto
-// de nuestro pc
+app.post("/create-task", (request, response) => {
+  console.log(request);
+});
+
 app.listen(6001, () =>
   console.log("El servidor inicio en el puerto http://localhost:6001")
 );
