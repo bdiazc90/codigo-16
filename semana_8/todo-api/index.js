@@ -3,6 +3,9 @@ import express from "express";
 
 const app = express();
 
+// vamos a agregar lo siguiente para que node pueda entender lo que el cliente envia
+app.use(express.json());
+
 // vamos a crear un arreglo que contega las tareas
 const todoListArray = [];
 
@@ -18,7 +21,16 @@ app.get("/", (request, response) => {
 });
 
 app.post("/create-task", (request, response) => {
-  console.log(request);
+  // request.body : Es la data que el cliente envie
+  const task = request.body;
+  task.created_at = new Date();
+  task.id = todoListArray.length + 1;
+
+  todoListArray.push(task);
+
+  response.json({
+    tarea: task,
+  });
 });
 
 app.listen(6001, () =>
