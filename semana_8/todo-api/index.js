@@ -33,6 +33,29 @@ app.post("/create-task", (request, response) => {
   });
 });
 
+app.put("/update-task/:id", (req, res) => {
+  // viene en el params
+  //! nota todo lo que venga de params es un string
+  const id = req.params.id;
+
+  // lo que el cliente envie estara en el body
+  const data = req.body;
+  // buscar la tarea
+
+  const taskIndex = todoListArray.findIndex(
+    (todoTask) => todoTask.id === Number(id)
+  );
+
+  todoListArray[taskIndex] = {
+    ...todoListArray[taskIndex],
+    ...data,
+  };
+
+  return res.json({
+    tarea: todoListArray[taskIndex],
+  });
+});
+
 app.listen(6001, () =>
   console.log("El servidor inicio en el puerto http://localhost:6001")
 );
