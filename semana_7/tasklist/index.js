@@ -85,7 +85,7 @@ formTask.submit(function (e) {
 	//! checkValidity analiza los inputs y si tienen required y estan vacios
 	//! esta funcion retorna false caso contrario esten lleno
 	//* retorna true
-	if (!form.checkValidity()) {
+	if (!formTask[0].checkValidity()) {
 		// agregamos la clase was-validated al formulario
 		// esto al ser agregado buscara los invalid-feedback y los mostrara
 		form.classList.add("was-validated");
